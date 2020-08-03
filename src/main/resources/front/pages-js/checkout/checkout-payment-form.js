@@ -10,9 +10,11 @@ CheckoutPaymentForm.SubmitForm = function() {
 	if($('#creditRadio').is(':checked')){
 		var ccExpiration = $('#cc-expiration').val().split("/");
 		
+		var cartaoSemEspaco = $('#cc-number').val() ? $('#cc-number').val().replace(" ", "") : "";
+		
 		PagSeguroDirectPayment.createCardToken({
 			brand: $('#cardBand').val(),
-			cardNumber: $('#cc-number').val(),
+			cardNumber: cartaoSemEspaco,
 			cvv: $('#cc-cvv').val(),
 			expirationMonth: ccExpiration[0],
 			expirationYear: ccExpiration[1],
