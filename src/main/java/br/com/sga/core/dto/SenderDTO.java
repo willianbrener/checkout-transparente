@@ -6,11 +6,12 @@ package br.com.sga.core.dto;
  *
  */
 public class SenderDTO {
-	
+
 	private String cpf;
 	private String name;
 	private String email;
 	private String hash;
+	private String birthDate;
 
 	private PhoneDTO phoneDTO = new PhoneDTO();
 
@@ -62,6 +63,14 @@ public class SenderDTO {
 
 	public void setAddressDTO(AddressDTO addressDTO) {
 		this.addressDTO = addressDTO;
+	}
+
+	public String getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(String birthDate) {
+		this.birthDate = birthDate;
 	}
 
 }

@@ -37,9 +37,9 @@ public class CheckoutController {
 	public ModelAndView form() {
 		ModelAndView mv = new ModelAndView("pages/checkout/checkout-form");
 
-		ProductDTO products = new ProductDTO(1,"Tenis Nike", "/resources/core-images/checkout/tenisnike.png", 650.00, 1, 650.00);
+		ProductDTO products = new ProductDTO(1,"Tenis Nike", "/resources/core-images/checkout/tenisnike.png", 1.00, 1, 1.00);
 
-		mv.addObject("checkoutDTO", new CheckoutDTO(650.00, Arrays.asList(products)));
+		mv.addObject("checkoutDTO", new CheckoutDTO(0.005, Arrays.asList(products)));
 
 		return mv;
 	}

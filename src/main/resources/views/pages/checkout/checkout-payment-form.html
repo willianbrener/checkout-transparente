@@ -52,6 +52,7 @@
 											
 											<input type="hidden" id="creditCardToken" name="creditCardToken" th:field="${paymentDTO.creditCardToken}" />
 											<input type="hidden" id="sessionPaymentId" name="sessionPaymentId" th:field="${paymentDTO.sessionPaymentId}" />
+											<input type="hidden" id="senderHash" name="hash" th:field="${paymentDTO.senderDTO.hash}" />
 											<input type="hidden" id="cardBand" name="cardBand" th:field="${paymentDTO.cardBand}" />
 											<input type="hidden" id="valorTotalProdutos" name="valorTotalProdutos" th:field="${paymentDTO.valorTotalProdutos}" />
 											<input type="hidden" id="quantidadeProdutos" name="quantidadeProdutos" th:field="${paymentDTO.quantidadeProdutos}" />
@@ -67,18 +68,22 @@
 											<h4 class="mb-3">Dados pessoais</h4>
 											
 											<div class="row">
-												<div class="col-md-7 mb-3">
-													<label class="form-label" for="name">Nome<span style="color:red;"> *</span></label>
-													<input type="text" class="form-control" id="name"
-													 th:field="${paymentDTO.senderDTO.name}" required>
-													 <div class="invalid-feedback">
-          Please choose a username.
-        </div>
-												</div>
 												<div class="col-md-5 mb-3">
+													<label class="form-label" for="name">Nome<span style="color:red;"> *</span></label>
+													<input type="text" class="form-control" id="name"  th:field="${paymentDTO.senderDTO.name}" required>
+													<div class="invalid-feedback">
+														Please choose a username.
+													</div>
+												</div>
+												<div class="col-md-4 mb-3">
 													<label class="form-label" for="lastName">CPF<span style="color:red;"> *</span></label>
 													<input type="text" class="form-control" id="cpf" 
 													th:field="${paymentDTO.senderDTO.cpf}" required>
+												</div>
+												<div class="col-md-3 mb-3">
+													<label class="form-label" for="birthDate">Data Aniversário<span style="color:red;"> *</span></label>
+													<input type="text" class="form-control" id="birthDate" 
+													th:field="${paymentDTO.senderDTO.birthDate}" required>
 												</div>
 											</div>
 											<div class="row">

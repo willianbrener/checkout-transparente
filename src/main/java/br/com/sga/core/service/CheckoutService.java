@@ -1,6 +1,8 @@
 package br.com.sga.core.service;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -208,6 +210,7 @@ public class CheckoutService {
 				.withCost(new BigDecimal(0.00))
 			)
 		).withBankSlip();
+		
 		return transaction;
 	}
 
@@ -231,29 +234,34 @@ public class CheckoutService {
 		}
 		
 		creditCard = creditCardBuilder.build();
+		
 		return creditCard;
 	}
 
 	private Holder montaHolder(SenderDTO senderDTO) {
-		Holder holder;
+		Holder holder = null;
 		
 		String phoneNumber = senderDTO.getPhoneDTO().getNumber() != null ? senderDTO.getPhoneDTO().getNumber() : "";
 		phoneNumber = phoneNumber.replace("-", "");
 		String cpf = senderDTO.getCpf() != null ? senderDTO.getCpf().replace(".", "").replace("-", "") : "";
 		
-		holder = new HolderBuilder()
-			.addDocument(
-				new DocumentBuilder()
-				.withType(DocumentType.CPF)
-				.withValue(cpf)
-			)
-			.withName(senderDTO.getName())
-			//.withBithDate(new SimpleDateFormat("dd/MM/yyyy").parse("25/03/1995"))
-			.withPhone(
-				new PhoneBuilder()
-				.withAreaCode(senderDTO.getPhoneDTO().getAreaCode())
-				.withNumber(phoneNumber)
-			).build();
+		try {
+			holder = new HolderBuilder()
+				.addDocument(
+					new DocumentBuilder()
+					.withType(DocumentType.CPF)
+					.withValue(cpf)
+				)
+				.withName(senderDTO.getName())
+				.withBithDate(new SimpleDateFormat("dd/MM/yyyy").parse(senderDTO.getBirthDate()))
+				.withPhone(
+					new PhoneBuilder()
+					.withAreaCode(senderDTO.getPhoneDTO().getAreaCode())
+					.withNumber(phoneNumber)
+				).build();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		
 		return holder;
 	}

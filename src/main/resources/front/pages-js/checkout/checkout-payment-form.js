@@ -94,7 +94,7 @@ CheckoutPaymentForm.PagSeguroValidateCard = function(element, bypassLengthTest) 
 						success: function(response1) {
 							console.info(response1);
 							
-							$('#mySelect')
+							$('#installments')
 							.find('option')
 							.remove()
 							.end()
@@ -107,8 +107,9 @@ CheckoutPaymentForm.PagSeguroValidateCard = function(element, bypassLengthTest) 
 							
 							new App.Loading($('body')).hide();
 						},
-						error: function(){
-							console.info(card_invalid);
+						error: function(e){
+							
+							console.info(e);
 							new App.Loading($('body')).hide();
 						}
 					});
@@ -119,7 +120,7 @@ CheckoutPaymentForm.PagSeguroValidateCard = function(element, bypassLengthTest) 
 				}
 			},
 			error: function(response) {
-				console.info(card_invalid);
+				console.info(response);
 				new App.Loading($('body')).hide();
 			}
 		});
@@ -136,9 +137,23 @@ $(document).ready(function() {
 		url: '/checkout/session',
 		type: 'GET'
 	}).done(function(data) {
-		PagSeguroDirectPayment.setSessionId(data);
-		$("#sessionPaymentId").val(data);
+		if(data){
+			PagSeguroDirectPayment.setSessionId(data);
+			$("#sessionPaymentId").val(data);
+			
+			PagSeguroDirectPayment.onSenderHashReady(function(response){
+				if(response.status == 'error') {
+					console.log(response.message);
+					return false;
+				}
+				
+				var hash = response.senderHash;
+				console.info(hash);
+				$("#senderHash").val(hash);
+			});
+		}
 	}).fail(function(erro) {
+		console.info(erro);
 		try{
 			var msg = new App.ExtrairErroAjax(erro).extrair();
 			App.AlertaErro('Não foi possível continuar', msg);
@@ -169,6 +184,7 @@ $(document).ready(function() {
 	
 	$('#zip').mask('00.000-000');
 	$('#cpf').mask('000.000.000-00');
+	$('#birthDate').mask('00/00/0000');
 	
 	$('#areaCode').mask('00');
 	$('#phoneNumber').mask('00000-0000');
