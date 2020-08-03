@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{core-layout/layout-pages/layout-box}">
+
+	<head>
+	     <title>404 | Página não encontrada</title>
+	</head>
+
+	<body>
+		<section layout:fragment="content">
+			<h3 class="login-box-msg">404 | Não encontrado</h3>
+			<p class="login-box-msg">Desculpe, mas não conseguimos encontrar esta página.</p>
+
+			<p id="detalhe-erro" class="login-box-msg">
+				Funcionalidade não encontrada.
+			</p>
+			
+			<div class="row">
+				<div class="col-12">
+					<a th:href="@{/}" class="btn btn-primary btn-block">
+						Voltar para a página de início
+					</a>
+				</div>
+			</div>
+		</section>
+	</body>
+</html>

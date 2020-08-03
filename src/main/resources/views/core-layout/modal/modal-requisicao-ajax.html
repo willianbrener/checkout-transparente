@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<div id="modal-requisicao-ajax" th:fragment="fragment-modal-requisicao-ajax" class="modal fade">
+
+		<div class="modal-dialog modal-md">
+			<div class="modal-content">
+				<div class="modal-body">
+
+					<span id="sufixo"></span>?
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default btn-sm min-width-100px" data-dismiss="modal">
+						<i class="fas fa-times before-margin-right-5"></i>
+						Cancelar
+					</button>
+					<button id="botao-action-modal-requisicao-ajax" type="button" 
+						class="btn btn-primary btn-sm min-width-100px">
+						<i class="fas fa-check before-margin-right-5"></i>
+						<span>Ok</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>

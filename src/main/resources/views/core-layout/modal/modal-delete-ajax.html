@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<div id="modal-delete-ajax" th:fragment="fragment-modal-delete-ajax" class="modal fade">
+
+		<div class="modal-dialog modal-md">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Confirmação de Exclusão</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
+					Tem certeza que deseja excluir <span id="sufixo"></span>?
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default btn-sm min-width-100px" data-dismiss="modal">
+						<i class="fas fa-times before-margin-right-5"></i>
+						Cancelar
+					</button>
+					<button id="botao-excluir-modal-delete-ajax" type="button" 
+						class="btn btn-danger btn-sm min-width-100px">
+						<i class="fas fa-trash before-margin-right-5"></i>
+						Excluir
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>

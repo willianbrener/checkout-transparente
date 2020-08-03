@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{core-layout/layout-pages/layout-master}">
+
+<head>
+    <title>Cadastrar Country</title>
+    
+    <th:block layout:fragment="self-page-css">
+    </th:block>
+
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-12">
+                        <h1 class="text-dark">Countries</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title btn-float-right">
+                                    <i class="fas fa-plus"></i>
+                                    Cadastrar Country
+                                </h3>
+                                <a th:href="@{/country}" class="float-right btn btn-default btn-sm min-width-100px">
+                                    <i class="fas fa-search"></i>
+                                    Pesquisar Countries
+                                </a>
+                            </div>
+                            <form th:action="@{/country/save}" th:object="${country}" method="post">
+
+                                <input type="hidden" th:field="${country.id}"/>
+
+                                <input id="region-id" type="hidden" th:field="${country.region.id}"/>
+
+                                <div class="card-body">
+                                    
+                                    <dialect:messages/>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group" >
+                                                <label for="name" class="form-label">Nome</label>
+                                                <input id="name" type="text" class="form-control" 
+                                                th:field="${country.name}" 
+                                                dialect:checkError="${country.name}" />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group" >
+                                                <label for="name" class="form-label">Region</label>
+                                                <div class="input-group input-group">
+                                                    <input id="region-name" type="text" class="form-control" readonly
+                                                        th:field="${country.region.name}"
+                                                        dialect:checkError="${country.region.id}">
+                                                    <div class="input-group-append">
+                                                        <span data-toggle="tooltip" title="Clique para selecionar Region">
+                                                            <button type="button" class="btn btn-default btn-flat" data-toggle="modal" data-target="#region-modal-list"
+                                                                onclick="javascript:ModalPesquisaRegion.show()">
+                                                                <i class="fas fa-search"></i>
+                                                            </button>
+                                                        </span>
+                                                        <span data-toggle="tooltip" title="Clique para limpar Region selecionada">
+                                                            <button type="button" class="btn btn-danger btn-flat"
+                                                                onclick="javascript:ModalPesquisaRegion.limparDestinos()">
+                                                                <i class="fas fa-times"></i>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                    <!-- <span class="input-group-append" data-toggle="tooltip" title="Clique para selecionar Region">
+                                                        <button type="button" class="btn btn-danger">
+                                                            <i class="fas fa-times"></i>
+                                                        </button>
+                                                    </span> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-footer">
+                                    <button type="submit" class="float-right btn btn-primary btn-sm min-width-100px button-loading-body">
+                                        <i class="fas fa-save"></i>
+                                        Salvar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <div th:replace="@{pages/region/region-modal-list} :: region-modal-list"></div>
+    </th:block>
+    
+	<th:block layout:fragment="self-page-javascripts">
+		<!-- JS da página -->
+		<script th:src="@{/resources/pages-js/country/country-form.js}"></script>
+		<script th:src="@{/resources/pages-js/region/region-modal-list.js}"></script>
+	</th:block>
+</body>
+
+</html>

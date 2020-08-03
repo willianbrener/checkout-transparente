@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<title layout:title-pattern="$LAYOUT_TITLE | $CONTENT_TITLE">SGA</title>
+
+	<link rel="shortcut icon" th:href="@{/resources/core-images/logo/favicon.png}" />
+
+	<th:block th:replace="@{core-layout/imports/import-css} :: import-css"></th:block>
+	
+	<th:block layout:fragment="self-page-css"></th:block>
+
+</head>
+<body class="hold-transition sidebar-mini">
+	<div class="wrapper">
+		<div th:replace="core-layout/layout-pages-components/navbar :: navbar"></div>
+		
+		<div th:replace="core-layout/layout-pages-components/menu :: menu"></div>
+
+		<div class="wrapper">
+			<div class="content-wrapper" role="main">
+				<section layout:fragment="content"></section>
+			</div>
+		</div>
+		
+		<div th:replace="core-layout/layout-pages-components/footer :: footer"></div>
+
+		<th:block th:replace="@{core-layout/imports/import-js} :: import-js"></th:block>
+		
+		<th:block layout:fragment="self-page-javascripts"></th:block>
+	</div>
+</body>
+
+</html>

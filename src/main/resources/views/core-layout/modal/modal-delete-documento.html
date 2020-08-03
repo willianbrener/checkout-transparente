@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html	xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org">
+		
+<body >
+
+<!-- Modal Delete-->
+<div class="modal fade bs-example-modal-sm  js-loading-target-ajax " id="modalDeleteDocumento" tabindex="-1" role="dialog" aria-hidden="true" th:fragment="modal-documento">
+	<div class="modal-dialog modal-sm" style="width: 500px">
+		<div class="modal-content ">
+
+			<div class="modal-header">
+				<button id="btnCloseDocumento" type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true"><i class="fas fa-times"></i></span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel2">Confirmação</h4>
+			</div>
+			<div class="modal-body" id="modal-boby-documento"></div>
+			<div class="modal-footer ">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+				<button id="btnConfirmDeleteDocumento" type="button" class="btn btn-dark js-btn-modal-documento ">Deletar</button>
+			</div>
+		</div>
+	</div>
+</div>
+	<!-- Modal -->
+<!-- 	<div class="modal fade bs-example-modal-sm" id="modalDeleteConfirmation" tabindex="-1" role="dialog" aria-hidden="true" th:fragment="modal"> -->
+<!-- 		<div class="modal-dialog modal-sm" style="width: 400px"> -->
+<!-- 			<div class="modal-content"> -->
+
+<!-- 				<div class="modal-header"> -->
+<!-- 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+<!-- 						<span aria-hidden="true"><i class="fas fa-times"></i></span> -->
+<!-- 					</button> -->
+<!-- 					<h4 class="modal-title" id="myModalLabel2">Confirmação</h4> -->
+<!-- 				</div> -->
+<!-- 				<div class="modal-body"></div> -->
+<!-- 				<div class="modal-footer"> -->
+<!-- 					<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button> -->
+<!-- 					<button type="button" class="btn btn-dark js-btn-modal" onclick="">Deletar</button> -->
+<!-- 				</div> -->
+
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+</body>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+	
+	<body>
+		<th:block th:fragment="pagination (page)">
+
+	    	<div id="pagination-bar-js" th:if="${page != null && !page.empty}">
+				<div class="d-flex justify-content-center">
+					<ul class="pagination form-group">
+						<li class="page-item" th:classappend="${page.first} ? disabled">
+							<a th:href="${page.first ? '#' : page.urlToPage()}" class="page-link btn btn-flat" th:classappend="${page.first} ? disabled">
+							<i class="text-primary fas fa-fast-backward"></i>
+							</a>
+						</li>
+						<li class="page-item" th:classappend="${not page.previous} ? disabled">
+							<a th:href="${not page.previous ? '#' : page.urlToPage(page.number-1)}" class="page-link btn btn-flat" th:classappend="${not page.previous} ? disabled">
+							<i class="text-primary fas fa-caret-left"></i>
+							</a>
+						</li>
+						<li th:each="item : ${page.items}" class="page-item" th:classappend="${item.current} ? active">
+							<a th:href="${page.urlToPage(item.number)}" class="page-link btn btn-flat" th:text="${item.number}"></a>
+						</li>
+						<li class="page-item" th:classappend="${not page.next} ? disabled">
+							<a th:href="${not page.next ? '#' : page.urlToPage(page.number+1)}" class="page-link btn btn-flat" th:classappend="${not page.next} ? disabled">
+							<i class="text-primary fas fa-caret-right"></i>
+							</a>
+						</li>
+						<li class="page-item" th:classappend="${page.last} ? disabled">
+							<a th:href="${page.last ? '#' : page.urlToPage(page.totalPages)}" class="page-link btn btn-flat" th:classappend="${page.last} ? disabled">
+							<i class="text-primary fas fa-fast-forward"></i>
+							</a>
+						</li>
+					</ul>
+
+					<div class="form-group margin-left-5px">
+					<select id="select-page-size" type="number"
+						class="form-control select2 select2-primary" data-dropdown-css-class="select2-primary" style="width: 100%;"
+						onchange="location = this.value;">
+						<option 
+							th:selected="${page.size} == 10 ? selected" 
+							th:value="${page.urlToPageSize('10')}"
+							th:text="'10'">
+						</option>
+						<option 
+							th:selected="${page.size} == 25 ? selected" 
+							th:value="${page.urlToPageSize('25')}"
+							th:text="'25'">
+						</option>
+						<option 
+							th:selected="${page.size} == 50 ? selected" 
+							th:value="${page.urlToPageSize('50')}"
+							th:text="'50'">
+						</option>
+						<option 
+							th:selected="${page.size} == 100 ? selected" 
+							th:value="${page.urlToPageSize('100')}"
+							th:text="'100'">
+						</option>
+					</select>
+					</div>
+				</div>
+			</div>
+		</th:block>
+   </body>
+</html>

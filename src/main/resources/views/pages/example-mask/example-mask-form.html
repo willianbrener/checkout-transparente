@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{core-layout/layout-pages/layout-master}">
+
+<head>
+    <title>Cadastrar Example Masks</title>
+    
+    <th:block layout:fragment="self-page-css">
+    </th:block>
+
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-12">
+                        <h1 class="text-dark">Example Masks</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content">
+            <div class="container-fluid">
+                <form id="form-example-mask" th:action="@{/example-mask/save}" th:object="${exampleMask}" method="post">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title btn-float-right">
+                                <i class="fas fa-plus"></i>
+                                Cadastrar Example Mask
+                            </h3>
+                            <a th:href="@{/example-mask}" class="float-right btn btn-default btn-sm min-width-100px">
+                                <i class="fas fa-search"></i>
+                                Pesquisar Example Masks
+                            </a>
+                        </div>
+
+                        <div class="card-body">
+
+                            <input type="hidden" th:field="${exampleMask.id}"/>
+                        
+                            <dialect:messages/>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group" >
+                                        <label for="opcoes" class="form-label">Opções</label>
+                                        <select id="opcoes" class="form-control chosen-select" th:field="${exampleMask.opcaoDominio}"
+                                            data-placeholder="-- Selecione uma Opção --">
+                                            <option value=""></option>
+                                            <option th:each="option : ${T(br.com.sga.core.model.dominio.OpcaoDominio).values()}"
+                                                th:value="${option.name()}"
+                                                th:text="${option.descricao}" >
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group" >
+                                        <label for="opcoes" class="form-label">Ativo/Inativo</label>
+                                        <select id="opcoes" class="form-control chosen-select" th:field="${exampleMask.ativoInativo}"
+                                            data-placeholder="-- Selecione uma Opção --">
+                                            <option value=""></option>
+                                            <option th:each="option : ${T(br.com.sga.core.model.dominio.AtivoInativoEnum).values()}"
+                                                th:value="${option.name()}"
+                                                th:text="${option.descricao}" >
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group" >
+                                        <label for="cpf" class="form-label">CPF</label>
+                                        <input id="cpf" type="text" class="form-control input-cpf" 
+                                        th:field="${exampleMask.cpf}"
+                                        dialect:checkError="${exampleMask.cpf}"  />
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group" >
+                                        <label for="cnpj" class="form-label">CNPJ</label>
+                                        <input id="cnpj" type="text" class="form-control input-cnpj" 
+                                        th:field="${exampleMask.cnpj}"
+                                        dialect:checkError="${exampleMask.cnpj}"  />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group" >
+                                        <label for="data-fim" class="form-label">Data Início</label>
+                                        <input id="data-inicio" type="text" class="form-control input-date" 
+                                        th:field="${exampleMask.dataInicio}"
+                                        dialect:checkError="${exampleMask.dataInicio}"  />
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group" >
+                                        <label for="data-fim" class="form-label">Data Fim</label>
+                                        <input id="data-fim" type="text" class="form-control input-date" 
+                                        th:field="${exampleMask.dataFim}"
+                                        dialect:checkError="${exampleMask.dataFim}"  />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group" >
+                                        <label for="data-hora" class="form-label">Data Hora</label>
+                                        <input id="data-hora" type="text" class="form-control input-date-time" 
+                                        th:field="${exampleMask.dataHora}"
+                                        dialect:checkError="${exampleMask.dataHora}"  />
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group" >
+                                        <label for="ano-mes" class="form-label">Ano Mês</label>
+                                        <input id="ano-mes" type="text" class="form-control input-date-mes-ano" 
+                                        th:field="${exampleMask.anoMesReferencia}"
+                                        dialect:checkError="${exampleMask.anoMesReferencia}"  />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group" >
+                                        <label for="salario" class="form-label">Salário</label>
+                                        <input id="salario" type="text" class="form-control mascara-real" 
+                                        th:field="${exampleMask.salario}"
+                                        dialect:checkError="${exampleMask.salario}"  />
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group" >
+                                        <label for="porcentagem" class="form-label">Porcentagem</label>
+                                        <input id="porcentagem" type="text" class="form-control" 
+                                        th:field="${exampleMask.porcentagem}"
+                                        dialect:checkError="${exampleMask.porcentagem}"  />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-footer">
+                            <button type="submit" class="float-right btn btn-primary btn-sm min-width-100px button-loading-body">
+                                <i class="fas fa-save"></i>
+                                Salvar EMask
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card card-secondary" th:if="${exampleMask.id}">
+                        <div class="card-header">
+                            <h3 class="card-title">Example Masks Childrens</h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="maximize">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+                            <div id="fragment-list-example-mask-children">
+                                <div th:fragment="fragment-list-example-mask-children">
+                                    
+                                    <th:block th:replace="core-layout/fragments/custom-messages :: custom-messages(
+                                        successCustomMessage=${succesListExampleMaskChildren},
+                                        errorCustomMessageCode=${errosListExampleMaskChildren}
+                                    )"></th:block>
+
+                                    <input type="hidden" th:field="${exampleMask.exampleMaskChildrenInputDTO.indiceEdicaoExampleMaskChildren}"/>
+
+                                    <input type="hidden" th:field="${exampleMask.exampleMaskChildrenInputDTO.inputExampleMaskChildren.id}"/>
+
+                                    <div class="row">
+                                        <div class="form-group col-sm-12">
+                                            <label for="descricao" class="form-label">Descrição</label>
+                                            <input id="descricao" type="text" class="form-control" 
+                                                th:field="${exampleMask.exampleMaskChildrenInputDTO.inputExampleMaskChildren.descricao}"
+                                                dialect:checkError="${exampleMask.exampleMaskChildrenInputDTO.inputExampleMaskChildren.descricao}"  />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-12">
+                                            <button type="button" class="btn btn-primary btn-sm min-width-100px float-right"
+                                                id="add-children"
+                                                th:data-url="@{/example-mask/list-example-mask-children/adicionar}"
+                                                data-id-content="fragment-list-example-mask-children"
+                                                data-id-content-spinner="fragment-list-example-mask-children"
+                                                onclick="javascript:ExampleMaskForm.AddChildren(this)">
+                                                <i th:class="(${exampleMask.exampleMaskChildrenInputDTO.indiceEdicaoExampleMaskChildren == null}) ? 'fas fa-plus' : 'fas fa-pencil-alt'"></i>
+                                                <th:block th:text="(${exampleMask.exampleMaskChildrenInputDTO.indiceEdicaoExampleMaskChildren == null}) ? 'Adicionar' : 'Editar'"></th:block>
+                                            </button>
+                                            <button type="button" class="btn btn-default btn-sm min-width-100px float-right margin-right-10"
+                                                th:if="${exampleMask.exampleMaskChildrenInputDTO.indiceEdicaoExampleMaskChildren} != null"
+                                                id="cancel-edit-children"
+                                                th:data-url="@{/example-mask/list-example-mask-children/cancelar}"
+                                                data-id-content="fragment-list-example-mask-children"
+                                                data-id-content-spinner="fragment-list-example-mask-children"
+                                                onclick="javascript:ExampleMaskForm.CancelEditChildren(this)">
+                                                <i class="fas fa-times"></i>
+                                                Cancelar
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-12">
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered table-hover text-nowrap">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Descrição</th>
+                                                        <th style="width: 40px;"></th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr th:each="exampleMaskChildren, rowStat : ${exampleMask.listExampleMaskChildren}"
+                                                        th:id="'tr-'+${rowStat.index}">
+
+                                                        <input type="hidden" th:field="${exampleMask.listExampleMaskChildren[__${rowStat.index}__].id}"/>
+                                                        <input type="hidden" th:field="${exampleMask.listExampleMaskChildren[__${rowStat.index}__].descricao}"/>
+
+                                                        <td th:text="${exampleMaskChildren.id}"></td>
+                                                        <td th:text="${exampleMaskChildren.descricao}"></td>
+
+                                                        <td class="text-right py-0 align-middle">
+                                                            <button type="button" class="btn btn-default btn-xs btn-table"
+                                                                th:id="'editar-children-'+${rowStat.index}"
+                                                                th:data-url="@{/example-mask/list-example-mask-children/editar/}+${rowStat.index}"
+                                                                data-id-content="fragment-list-example-mask-children"
+                                                                data-id-content-spinner="fragment-list-example-mask-children"
+                                                                onclick="javascript:ExampleMaskForm.EditarChildren(this)">
+                                                                <i class="fas fa-pencil-alt"></i>
+                                                            </button>
+                                                            <button type="button" class="btn btn-danger btn-xs btn-table"
+                                                                th:id="'remover-children-'+${rowStat.index}"
+                                                                th:data-url="@{/example-mask/list-example-mask-children/remover/}+${rowStat.index}"
+                                                                data-id-content="fragment-list-example-mask-children"
+                                                                data-id-content-spinner="fragment-list-example-mask-children"
+                                                                onclick="javascript:ExampleMaskForm.RemoverChildren(this)">
+                                                                <i class="fas fa-trash"></i>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    <tr th:if="${#lists.isEmpty(exampleMask.listExampleMaskChildren)}">
+                                                        <td colspan="3" class="text-center">Nenhum registro encontrado.</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+        
+    </th:block>
+    
+	<th:block layout:fragment="self-page-javascripts">
+		<!-- JS da página -->
+        <script th:src="@{/resources/pages-js/example-mask/example-mask-form.js}"></script>
+	</th:block>
+</body>
+
+</html>

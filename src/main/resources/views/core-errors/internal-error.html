@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{core-layout/layout-pages/layout-box}">
+
+	<head>
+	     <title>500 | Erro Interno</title>
+	</head>
+
+	<body>
+		<section layout:fragment="content">
+			<h3 class="login-box-msg">500 | Erro Interno</h3>
+			<p class="login-box-msg">Desculpe, ocorreu um erro interno do sistema.</p>
+
+			<p id="detalhe-erro" class="login-box-msg">
+				<th:block th:if="${errorDetails != null}" th:text="|Detalhes do erro: ${errorDetails}|"></th:block>	
+			</p>
+			
+			<div class="row">
+				<div class="col-12">
+					<a th:href="@{/}" class="btn btn-primary btn-block">
+						Voltar para a página de início
+					</a>
+				</div>
+			</div>
+		</section>
+	</body>
+</html>

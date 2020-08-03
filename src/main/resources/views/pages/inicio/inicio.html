@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{core-layout/layout-pages/layout-master}">
+
+<head>
+<title>Bem-Vindo</title>
+
+</head>
+	<body>
+
+		<th:block layout:fragment="content">
+			<section class="content-header">
+			</section>
+	
+			<section class="content">
+				<div class="container-fluid">
+	
+					<div class="row">
+	
+						<div class="col-md-4">
+							<div class="card">
+								<div class="card-header bg-gray-basic">
+									<h3 class="text-dark">
+										Carrinho de compras
+										<i class="float-right fas fa-globe-americas" style="padding: 5px;"></i>
+									</h3>
+								</div>
+								<div class="card-body p-0">
+									<ul class="nav flex-column">
+										<li class="nav-item">
+											<a th:href="@{/checkout/form}" class="nav-link">
+												Fechar pedido
+												<i class="float-right fas fa-shopping-cart" style="padding: 5px;"></i>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+	
+			</section>
+		</th:block>
+
+	</body>
+</html>

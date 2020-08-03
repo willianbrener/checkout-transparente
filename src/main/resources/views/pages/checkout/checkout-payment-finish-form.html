@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{core-layout/layout-pages/layout-master}">
+	<head>
+		<title>Finalizando pedido</title>
+	</head>
+	<body>
+		<th:block layout:fragment="content">
+		
+			<section class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-12">
+							<h1 class="text-dark">Pedido realizado</h1>
+						</div>
+					</div>
+				</div>
+			</section>
+			
+			
+			<section class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								
+							</div>
+						
+						</div>
+					</div>
+				</div>
+			</section>
+		</th:block>
+		
+		<th:block layout:fragment="self-page-javascripts">
+			<!-- JS da página -->
+			<script th:src="@{/resources/pages-js/checkout/checkout-form.js}"></script>
+		</th:block>
+		
+	</body>
+</html>

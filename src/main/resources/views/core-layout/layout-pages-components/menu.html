@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<aside class="main-sidebar sidebar-dark-warning elevation-4" th:fragment="menu">
+		<a th:href="@{/}" class="brand-link">
+			<span class="brand-link-full">
+				<img class="img-brand-link-full" th:src="@{/resources/core-images/logo/logo-negative.png}">
+			</span>
+			<span class="brand-link-simple img-circle">
+				<img class="img-brand-link-simple" th:src="@{/resources/core-images/logo/logo-negative-simple.png}">
+			</span>
+		</a>
+
+		<div class="sidebar">
+
+			<nav class="mt-2">
+				<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview"
+					role="menu" data-accordion="false">
+
+					<li class="nav-item has-treeview">
+						<a href="#" class="nav-link">
+							<i class="nav-icon fas fa-shopping-cart"></i>
+							<p>
+								Carrinho de compras
+								<i class="right fas fa-angle-left"></i>
+							</p>
+						</a>
+						<ul class="nav nav-treeview">	
+							<li class="nav-item">
+								<a class="nav-link" th:href="@{/checkout/form}">
+									<i class="far fa-circle nav-icon"></i>
+									<p>Fechar Pedido</p>
+								</a>
+							</li>
+						</ul>
+					</li>
+
+				</ul>
+			</nav>
+			<!-- /.sidebar-menu -->
+		</div>
+		<!-- /.sidebar -->
+	</aside>
+</body>
+
+</html>

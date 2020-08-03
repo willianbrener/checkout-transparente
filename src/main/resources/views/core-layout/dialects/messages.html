@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+        
+	<body>
+
+		<div th:fragment="messages (attr)" th:attr="__${attr}__" dialect:removeAttribute="${attr eq 'null'} ? 'th:attr'">
+
+			<div class="alert alert-danger alert-dismissible" th:if="${not #fields.detailedErrors().isEmpty()}">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<th:block th:each="error : ${#fields.detailedErrors()}">
+					<dd><i class="icon fas fa-ban"></i><th:block th:text="${error.message}"></th:block></dd>
+				</th:block>
+			</div>
+
+			<div class="alert alert-danger alert-dismissible" th:if="${not #strings.isEmpty(errorMessage)}">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<th:block th:each="error: ${errorMessage}">
+					<dd><i class="icon fas fa-ban"></i><th:block th:text="${error}"></th:block></dd>
+				</th:block>
+			</div>
+
+			<div class="alert alert-info alert-dismissible" th:if="${not #strings.isEmpty(infoMessage)}">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<th:block th:each="info: ${infoMessage}">
+					<dd><i class="icon fas fa-info"></i><th:block th:text="${info}"></th:block></dd>
+				</th:block>
+			</div>
+
+			<div class="alert alert-warning alert-dismissible" th:if="${not #strings.isEmpty(warnMessage)}">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<th:block th:each="warn: ${warnMessage}">
+					<dd><i class="icon fas fa-exclamation-triangle"></i><th:block th:text="${warn}"></th:block></dd>
+				</th:block>
+			</div>
+
+			<div class="alert alert-success alert-dismissible" th:if="${not #strings.isEmpty(successMessage)}">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<th:block th:each="success: ${successMessage}">
+					<dd><i class="icon fas fa-check"></i><th:block th:text="${success}"></th:block></dd>
+				</th:block>
+			</div>
+		</div>
+	</body>
+</html>

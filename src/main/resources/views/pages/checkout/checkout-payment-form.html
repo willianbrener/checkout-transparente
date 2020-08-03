@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{core-layout/layout-pages/layout-master}">
+	<head>
+		<title>Pagamento</title>
+	</head>
+	<body>
+		<th:block layout:fragment="content">
+			
+			<section class="content-header">
+				<div class="container-fluid">
+					<div class="row mb-2">
+						<div class="col-sm-12">
+							<h1 class="text-dark">Fechar pedido</h1>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12">
+						
+							<div class="container">
+								<div class="row">
+									<div class="col-md-4 order-md-2 mb-4">
+										<h4 class="d-flex justify-content-between align-items-center mb-3">
+											<span class="text-muted">Seu carrinho</span>
+											<span class="badge badge-secondary badge-pill" 
+												th:text="${quantidadeProdutos}">3</span>
+										</h4>
+										<ul class="list-group mb-3">
+											<li th:each="product, rowStat : ${checkoutDTO.products}" 
+												class="list-group-item d-flex justify-content-between lh-condensed">
+												<div>
+													<h6 class="my-0" th:text="${product.nomeProduto}">Nome produto</h6>
+												</div>
+												<span class="text-muted" th:text="${product.precoTotalProduto}">$12</span>
+											</li>
+											
+											<li class="list-group-item d-flex justify-content-between">
+												<span>Total (BRL)</span>
+												<strong th:text="'R$ '+ ${valorTotalProdutos}"></strong>
+											</li>
+										</ul>
+									</div>
+									<div class="col-md-8 order-md-1">
+										<form id="formPayment" class="needs-validation" th:action="@{/checkout/payment/finish}" th:object="${paymentDTO}" method="post" novalidate>
+											
+											<input type="hidden" id="creditCardToken" name="creditCardToken" th:field="${paymentDTO.creditCardToken}" />
+											<input type="hidden" id="sessionPaymentId" name="sessionPaymentId" th:field="${paymentDTO.sessionPaymentId}" />
+											<input type="hidden" id="cardBand" name="cardBand" th:field="${paymentDTO.cardBand}" />
+											<input type="hidden" id="valorTotalProdutos" name="valorTotalProdutos" th:field="${paymentDTO.valorTotalProdutos}" />
+											<input type="hidden" id="quantidadeProdutos" name="quantidadeProdutos" th:field="${paymentDTO.quantidadeProdutos}" />
+											
+											<th:block th:each="product, rowStat : ${paymentDTO.checkoutDTO.products}" th:id="'tr-produto-'+${rowStat.index}">
+												<input type="hidden" th:field="${paymentDTO.checkoutDTO.products[__${rowStat.index}__].nomeProduto}" />
+												<input type="hidden" th:field="${paymentDTO.checkoutDTO.products[__${rowStat.index}__].fotoProduto}" />
+												<input type="hidden" th:field="${paymentDTO.checkoutDTO.products[__${rowStat.index}__].precoProduto}" />
+												<input type="hidden" th:field="${paymentDTO.checkoutDTO.products[__${rowStat.index}__].quantidadeProduto}" />
+												<input type="hidden" th:field="${paymentDTO.checkoutDTO.products[__${rowStat.index}__].precoTotalProduto}" />
+											</th:block>
+											
+											<h4 class="mb-3">Dados pessoais</h4>
+											
+											<div class="row">
+												<div class="col-md-7 mb-3">
+													<label class="form-label" for="name">Nome<span style="color:red;"> *</span></label>
+													<input type="text" class="form-control" id="name"
+													 th:field="${paymentDTO.senderDTO.name}" required>
+													 <div class="invalid-feedback">
+          Please choose a username.
+        </div>
+												</div>
+												<div class="col-md-5 mb-3">
+													<label class="form-label" for="lastName">CPF<span style="color:red;"> *</span></label>
+													<input type="text" class="form-control" id="cpf" 
+													th:field="${paymentDTO.senderDTO.cpf}" required>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-7 mb-3">
+													<label class="form-label" for="email">Email<span style="color:red;"> *</span></label>
+													<input type="email" class="form-control" id="email" 
+													th:field="${paymentDTO.senderDTO.email}" required>
+												</div>
+												<div class="col-md-5 mb-3">
+													<div class="col-md-12 mb-3">
+														<label class="form-label" for="email">Telefone(DDD)<span style="color:red;"> *</span></label>
+														<div class="row">
+															<div class="col-md-3 mb-3">
+																<input type="text" class="form-control" id="areaCode" 
+																th:field="${paymentDTO.senderDTO.phoneDTO.areaCode}" required>
+															</div>
+															<div class="col-md-9 mb-3">
+																<input type="text" class="form-control" id="phoneNumber" 
+																th:field="${paymentDTO.senderDTO.phoneDTO.number}" required>
+															</div>
+														</div>
+													</div>
+													
+												</div>
+											</div>
+											
+											<hr class="mb-4">
+											<h4 class="mb-3">Dados de cobrança</h4>
+											
+											<div class="row">
+												<div class="col-md-6 mb-3">
+													<label class="form-label" for="endereco">Endereço<span style="color:red;"> *</span></label>
+													<input type="text" class="form-control" id="endereco" 
+													th:field="${paymentDTO.senderDTO.addressDTO.street}" required>
+												</div>
+												<div class="col-md-4 mb-3">
+													<label class="form-label" for="bairro">Bairro<span style="color:red;"> *</span></label>
+													<input type="text" class="form-control" id="bairro" 
+													th:field="${paymentDTO.senderDTO.addressDTO.district}" required>
+												</div>
+												<div class="col-md-2 mb-3">
+													<label class="form-label" for="numero">Numero<span style="color:red;"> *</span></label>
+													<input type="text" class="form-control" id="numero" 
+													th:field="${paymentDTO.senderDTO.addressDTO.number}" required>
+												</div>
+											</div>
+											
+											<div class="row">
+												<div class="col-md-12 mb-3">
+													<label class="form-label" for="complemento">Complemento<span style="color:red;"> *</span></label>
+													<input type="text" class="form-control" id="complemento" 
+													 th:field="${paymentDTO.senderDTO.addressDTO.complement}" required>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="col-md-4 mb-3">
+													<label for="state">Estado<span style="color:red;"> *</span></label>
+													<select class="custom-select d-block w-100" id="state" 
+													 th:field="${paymentDTO.senderDTO.addressDTO.state}" required>
+														<option value="">Escolha...</option>
+														<option value="GO">Goiás</option>
+													</select>
+												</div>
+												<div class="col-md-4 mb-3">
+													<label for="city">Cidade<span style="color:red;"> *</span></label>
+													<select class="custom-select d-block w-100" id="city" 
+													 th:field="${paymentDTO.senderDTO.addressDTO.city}" required>
+														<option value="">Escolha...</option>
+														<option value="Goiania">Goiânia</option>
+													</select>
+												</div>
+												<div class="col-md-4 mb-3">
+													<label for="zip">CEP<span style="color:red;"> *</span></label>
+													<input type="text" class="form-control" id="zip" 
+													 th:field="${paymentDTO.senderDTO.addressDTO.postalCode}" required>
+												</div>
+											</div>
+											<hr class="mb-4">
+											<h4 class="mb-3">Pagamento</h4>
+											
+											<div class="d-block my-3">
+												<div class="custom-control custom-radio">
+													<input id="creditRadio" th:field="${paymentDTO.paymentType}" name="pagseguro[option]" type="radio" value="creditCard" class="custom-control-input pagseguro_radio">
+													<label class="custom-control-label pagseguro_radio" for="creditRadio">Cartão de Crédito</label>
+												</div>
+												<div class="custom-control custom-radio">
+													<input id="debitoRadio" th:field="${paymentDTO.paymentType}" name="pagseguro[option]" type="radio" value="debito" class="custom-control-input pagseguro_radio">
+													<label class="custom-control-label pagseguro_radio" for="debitoRadio">Débito Online</label>
+												</div>
+												<div class="custom-control custom-radio">
+													<input id="boletoRadio" th:field="${paymentDTO.paymentType}" name="pagseguro[option]" type="radio" value="boleto" class="custom-control-input pagseguro_radio">
+													<label class="custom-control-label pagseguro_radio" for="boletoRadio" >Boleto</label>
+												</div>
+											</div>
+											
+											<div class="pagseguro-form pagseguro-creditCard pagseguro-debitCard" style="display:none;">
+												<div class="row">
+													<div class="col-md-6 mb-3">
+														<label for="cc-name">Nome cartão<span style="color:red;"> *</span></label>
+														<input type="text" th:field="${paymentDTO.holderDTO.name}" class="form-control" id="cc-name" 
+														placeholder="" required>
+														<small class="text-muted">Nome escrito no cartão</small>
+													</div>
+													<div class="col-md-6 mb-3">
+														<label for="cc-number">Número cartão<span style="color:red;"> *</span></label>
+														<input type="text" class="form-control input-numero-cartao" 
+														th:field="${paymentDTO.holderDTO.cardNumber}" id="cc-number" placeholder="" required>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-md-3 mb-3">
+														<label for="cc-expiration">Expiração<span style="color:red;"> *</span></label>
+														<input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+													</div>
+													
+													<div class="col-md-2 mb-3">
+														<label for="cc-expiration">CVV<span style="color:red;"> *</span></label>
+														<input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+													</div>
+													
+													<div class="col-md-7 mb-3">
+														<label for="installments">Parcelas</label>
+														<select class="form-control" id="installments" name="installmentSelected"
+															th:field="${paymentDTO.installmentSelected}" placeholder="" >
+															<option value="">Selecione a quantidade de parcelas</option>
+														</select>
+													</div>
+												</div>
+											</div>
+											
+											<div class="pagseguro-form pagseguro-debito" style="display:none;">
+												<select class="form-control" id="bancos" name="bankSelected"
+													th:field="${paymentDTO.bankSelected}" placeholder="" >
+													<option value="">Selecione o banco para realizar o pagamento</option>
+													<option th:each="banco, rowStat : ${T(br.com.sga.core.enumerable.EnumBancoDebito).values()}" 
+														th:text="${banco.descricao}" th:value="${banco.id}"></option>
+												</select>
+											</div>
+											
+											<div class="pagseguro-form pagseguro-boleto" style="display:none;">
+												Você vai ser redirecionado para a página do Boleto ao clicar "Finalizar"
+											</div>
+											
+											
+											
+											<hr class="mb-4">
+											
+											<div class="row">
+												<div class="col-md-3 mb-3"></div>
+												<div class="col-md-3 mb-3">
+													<a id="botao-voltar" th:href="@{/checkout/form}" class="btn btn-default btn-lg btn-block" type="button">Voltar</a>
+												</div>
+												<div class="col-md-3 mb-3">
+													<button id="continuar-pagamento" class="btn btn-success btn-lg btn-block" type="button">Finalizar</button>
+												</div>
+												<div class="col-md-3 mb-3"></div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</section>
+		</th:block>
+		
+		<th:block layout:fragment="self-page-javascripts">
+			<!-- JS da página -->
+			<script th:src="@{/resources/pages-js/checkout/checkout-payment-form.js}"></script>
+		</th:block>
+		
+		
+	</body>
+</html>

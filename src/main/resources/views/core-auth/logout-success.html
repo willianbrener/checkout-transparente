@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{core-layout/layout-pages/layout-box}">
+
+	<head>
+	     <title>Logout</title>
+	</head>
+
+	<body>
+		<section layout:fragment="content">
+			<h3 class="login-box-msg">Logout</h3>
+			<p class="login-box-msg" id="detalhe-erro">Você foi desconectado do sistema.</p>
+			
+			<div class="row">
+				<div class="col-12">
+					<a th:href="@{/}" class="btn btn-primary btn-block">
+						Voltar para a página de início
+					</a>
+				</div>
+			</div>
+		</section>
+	</body>
+</html>

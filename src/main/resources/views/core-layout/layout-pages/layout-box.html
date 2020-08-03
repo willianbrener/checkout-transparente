@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="Content-Type" content="text/html charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<title layout:title-pattern="$LAYOUT_TITLE | $CONTENT_TITLE">SGA</title>
+
+	<link rel="shortcut icon" th:href="@{/resources/core-images/logo/favicon.png}" />
+
+	<th:block th:replace="@{core-layout/imports/import-css} :: import-css"></th:block>
+	
+	<th:block layout:fragment="self-page-css"></th:block>
+
+</head>
+<body class="hold-transition login-page" 
+	th:style="'background-image: url('+@{/resources/core-template/layout-box/backgrounds/abstract/1.jpg}+');background-size: cover;'">
+	
+	<div class="login-box">
+		<div class="card login-page-filter" style="background: transparent;">
+			<div class="card-body login-card-body" style="background: transparent;">
+				<div class="login-logo">
+					<a th:href="@{/}">
+						<img th:src="@{/resources/core-images/logo/logo.png}" style="width: 120px;opacity: 0.8;">
+					</a>
+				</div>
+				
+				<section layout:fragment="content"></section>
+							
+			</div>
+		</div>
+	</div>
+
+	<th:block th:replace="@{core-layout/imports/import-js} :: import-js"></th:block>
+
+	<script th:src="@{/resources/core-plugins/jquery-backstretch/jquery.backstretch.min.js}"></script>
+	<script id="layout-box-js" th:src="@{/resources/core-template/layout-box/layout-box.js}" th:data-context-path="@{/}"></script>
+	
+	<th:block layout:fragment="self-page-javascripts"></th:block>
+</body>
+
+</html>

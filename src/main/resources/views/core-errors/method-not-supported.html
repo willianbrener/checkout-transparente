@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{core-layout/layout-pages/layout-box}">
+
+	<head>
+	     <title>405 | Método não suportado</title>
+	</head>
+
+	<body>
+		<section layout:fragment="content">
+			<h3 class="login-box-msg">405 | Método não suportado</h3>
+			<p class="login-box-msg" id="detalhe-erro">
+				Desculpe, mas este método HTTP não é suportado.
+			</p>
+			
+			<div class="row">
+				<div class="col-12">
+					<a th:href="@{/}" class="btn btn-primary btn-block">
+						Voltar para a página de início
+					</a>
+				</div>
+			</div>
+		</section>
+	</body>
+</html>

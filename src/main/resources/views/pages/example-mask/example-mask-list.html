@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+    layout:decorate="~{core-layout/layout-pages/layout-master}">
+
+<head>
+    <title>Listar Example Masks</title>
+
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-12">
+                        <h1 class="text-dark">Example Masks</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="card" class="card">
+                            <div class="card-header">
+                                <h3 class="card-title btn-float-right">
+                                    <i class="fas fa-search"></i>
+                                    Pesquisar Example Masks
+                                </h3>
+                                <a th:href="@{/example-mask/form}"
+                                    class="float-right btn btn-default btn-sm min-width-100px">
+                                    <i class="fas fa-plus"></i>
+                                    Cadastrar Example Mask
+                                </a>
+                            </div>
+
+                            <div class="card-body">
+                                
+                                <form id="example-mask-list" th:action="@{/example-mask}" th:object="${exampleMask}" method="get">
+                                    
+                                    <dialect:messages/>
+
+                                    <div id="fragment-table-content">
+                                        <div th:fragment="fragment-table-content">
+                                            
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group table-responsive">
+                                                        <table class="table table-bordered table-hover text-nowrap">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>ID</th>
+                                                                <th>Cpf</th>
+                                                                <th>Cnpj</th>
+                                                                <th>Data Início</th>
+                                                                <th>Data Fim</th>
+                                                                <th>Data Hora</th>
+                                                                <th>Ano Mês</th>
+                                                                <th>Salário</th>
+                                                                <th>Porcentagem</th>
+                                                                <th style="width: 40px;"></th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr th:each="exampleMask, rowStat : ${page.content}"
+                                                                th:id="'tr-'+${rowStat.index}">
+
+                                                                <td th:text="${exampleMask.id}"></td>
+                                                                <td th:text="${exampleMask.cpf}"></td>
+                                                                <td th:text="${exampleMask.cnpj}"></td>
+                                                                <td th:text="${{exampleMask.dataInicio}}"></td>
+                                                                <td th:text="${{exampleMask.dataFim}}"></td>
+                                                                <td th:text="${{exampleMask.dataHora}}"></td>
+                                                                <td th:text="${{exampleMask.anoMesReferencia}}"></td>
+                                                                <td th:text="${{exampleMask.salario}}"></td>
+                                                                <td th:text="${{exampleMask.porcentagem}}"></td>
+
+                                                                <td class="text-right py-0 align-middle">
+                                                                    <a th:href="@{example-mask/form/}+${exampleMask.id}" class="btn btn-default btn-xs btn-table">
+                                                                        <i class="fas fa-pencil-alt"></i>
+                                                                    </a>
+                                                                    <a th:href="@{example-mask/delete/}+${exampleMask.id}" class="btn btn-danger btn-xs btn-table">
+                                                                        <i class="fas fa-trash"></i>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr th:if="${#lists.isEmpty(page.content)}">
+                                                                <td colspan="8" class="text-center">Nenhum registro encontrado.</td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <span class="text-xs" th:text="${page.pageInfo}"></span>
+
+                                    <div class="form-group">
+                                        <dialect:pagination page="${page}" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </th:block>
+
+    <th:block layout:fragment="self-page-javascripts">
+        <!-- JS da página -->
+        <script th:src="@{/resources/pages-js/example-mask/example-mask-list.js}"></script>
+    </th:block>
+</body>
+
+</html>

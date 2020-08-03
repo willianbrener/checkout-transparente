@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{core-layout/layout-pages/layout-box}">
+
+	<head>
+	     <title>Login</title>
+	</head>
+
+	<body>
+		<section layout:fragment="content">
+						
+			<h3 class="login-box-msg">Controle de Acesso</h3>
+
+			<div class="alert alert-danger alert-dismissible" th:if="${message != null}">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<dd><i class="icon fas fa-ban"></i><th:block th:text="${message}"></th:block></dd>
+			</div>
+			
+			<form th:action="@{/login}" method="post">
+				<div class="input-group mb-3">
+					<input type="text" name="username" class="form-control" placeholder="Usuário"
+						th:value="${username}">
+					<div class="input-group-append">
+						<div class="input-group-text">
+							<span class="fas fa-user"></span>
+						</div>
+					</div>
+				</div>
+				<div class="input-group mb-3">
+					<input type="password" name="password" class="form-control" placeholder="Senha">
+					<div class="input-group-append">
+						<div class="input-group-text">
+							<span class="fas fa-lock"></span>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<button type="submit" class="btn btn-primary btn-block button-loading-body">
+							Entrar
+						</button>
+					</div>
+				</div>
+				<h6 class="login-box-msg" style="padding: 20px;">
+					<b>Seu IP: <th:block th:text="${ipAddress}"></th:block></b>
+				</h6>
+			</form>
+
+		</section>
+	</body>
+</html>

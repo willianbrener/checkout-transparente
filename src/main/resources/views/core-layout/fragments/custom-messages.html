@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+        
+	<body>
+
+		<div th:fragment="custom-messages">
+
+			<div class="alert alert-danger alert-dismissible" th:if="${not #strings.isEmpty(errorCustomMessage)}">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<th:block th:each="error: ${errorCustomMessage}">
+					<dd><i class="icon fas fa-ban"></i><th:block th:text="${error}"></th:block></dd>
+				</th:block>
+			</div>
+
+			<div class="alert alert-danger alert-dismissible" th:if="${not #strings.isEmpty(errorCustomMessageCode)}">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<th:block th:each="error: ${errorCustomMessageCode}">
+					<dd><i class="icon fas fa-ban"></i><th:block th:text="#{${error.code}}"></th:block></dd>
+				</th:block>
+			</div>
+
+			<div class="alert alert-info alert-dismissible" th:if="${not #strings.isEmpty(infoCustomMessage)}">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<th:block th:each="info: ${infoCustomMessage}">
+					<dd><i class="icon fas fa-info"></i><th:block th:text="${info}"></th:block></dd>
+				</th:block>
+			</div>
+
+			<div class="alert alert-info alert-dismissible" th:if="${not #strings.isEmpty(infoCustomMessageCode)}">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<th:block th:each="info: ${infoCustomMessageCode}">
+					<dd><i class="icon fas fa-info"></i><th:block th:text="#{${info.code}}"></th:block></dd>
+				</th:block>
+			</div>
+
+			<div class="alert alert-warning alert-dismissible" th:if="${not #strings.isEmpty(warnCustomMessage)}">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<th:block th:each="warn: ${warnCustomMessage}">
+					<dd><i class="icon fas fa-exclamation-triangle"></i><th:block th:text="${warn}"></th:block></dd>
+				</th:block>
+			</div>
+
+			<div class="alert alert-warning alert-dismissible" th:if="${not #strings.isEmpty(warnCustomMessageCode)}">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<th:block th:each="warn: ${warnCustomMessageCode}">
+					<dd><i class="icon fas fa-exclamation-triangle"></i><th:block th:text="#{${warn.code}}"></th:block></dd>
+				</th:block>
+			</div>
+
+			<div class="alert alert-success alert-dismissible" th:if="${not #strings.isEmpty(successCustomMessage)}">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<th:block th:each="success: ${successCustomMessage}">
+					<dd><i class="icon fas fa-check"></i><th:block th:text="${success}"></th:block></dd>
+				</th:block>
+			</div>
+
+			<div class="alert alert-success alert-dismissible" th:if="${not #strings.isEmpty(successCustomMessageCode)}">
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				<th:block th:each="success: ${successCustomMessageCode}">
+					<dd><i class="icon fas fa-check"></i><th:block th:text="#{${success.code}}"></th:block></dd>
+				</th:block>
+			</div>
+		</div>
+	</body>
+</html>

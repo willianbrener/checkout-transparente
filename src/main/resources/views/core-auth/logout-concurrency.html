@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{core-layout/layout-pages/layout-box}">
+
+	<head>
+	     <title>Acesso Concorrente</title>
+	</head>
+
+	<body>
+		<section layout:fragment="content">
+			<h3 class="login-box-msg">Acesso Concorrente</h3>
+			<p class="login-box-msg">Há outra sessão com suas credenciais! Você foi desconectado!</p>
+
+			<p id="detalhe-erro" class="login-box-msg">
+				Por questões de segurança, foi realizado seu logout. Por favor, verifique se há outra sessão ativa utilizando suas credenciais.
+			</p>
+			
+			<div class="row">
+				<div class="col-12">
+					<a th:href="@{/}" class="btn btn-primary btn-block">
+						Voltar para a página de início
+					</a>
+				</div>
+			</div>
+		</section>
+	</body>
+</html>

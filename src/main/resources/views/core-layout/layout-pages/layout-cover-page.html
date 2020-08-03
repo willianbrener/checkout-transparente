@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+	<head>
+	   	<title>SGA</title>
+	    
+	    <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="Content-Type"  content="text/html charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!-- CSS -->
+        <link th:href="@{/resources/core-cover-pages/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+        <link th:href="@{/resources/core-cover-pages/font-awesome/css/font-awesome.min.css}" rel="stylesheet">
+        <link th:href="@{/resources/core-cover-pages/css/form-elements.css}" rel="stylesheet">
+        <link th:href="@{/resources/core-cover-pages/css/style.css}" rel="stylesheet">
+        
+	    <link rel="shortcut icon" th:href="@{/resources/core-images/logo/favicon.png}" />
+	
+	</head>
+
+	<body>
+		<div class="top-content">
+			<div class="inner-bg">
+				<div class="container">
+					<!-- Topo -->
+					<div class="row" style="margin:0px 0px 30px 0px">
+						<div class="col-sm-8 col-sm-offset-2 text">
+							<a th:href="@{/}">
+								<img th:src="@{/resources/core-images/logo/logo.png}" style="width: 200px; opacity:0.50; margin:0px">
+							</a>
+                        </div>
+                    </div>
+                    <!-- Conteudo -->
+					<div id="content">
+						<section layout:fragment="cover-page-content"></section>
+					</div>				
+				</div>
+            </div>
+        </div>
+
+        <!-- Javascript -->
+        <script th:src="@{/resources/core-cover-pages/js/jquery-1.11.1.min.js}"></script>
+        <script th:src="@{/resources/core-cover-pages/bootstrap/js/bootstrap.min.js}"></script>
+        <script th:src="@{/resources/core-cover-pages/js/jquery.backstretch.min.js}"></script>
+        <script id="cover-pages-script" th:src="@{/resources/core-cover-pages/js/scripts.js}" th:data-context-path="@{/}"></script>
+        
+        <th:block layout:fragment="self-page-javascripts"></th:block>
+        <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+
+    </body>
+</html>

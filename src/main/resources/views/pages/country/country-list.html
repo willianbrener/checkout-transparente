@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" 
+    layout:decorate="~{core-layout/layout-pages/layout-master}">
+
+<head>
+    <title>Listar C</title>
+
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-12">
+                        <h1 class="text-dark">Countries</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title btn-float-right">
+                                    <i class="fas fa-search"></i>
+                                    Pesquisar Countries
+                                </h3>
+                                <a th:href="@{/country/form}"
+                                    class="float-right btn btn-default btn-sm min-width-100px">
+                                    <i class="fas fa-plus"></i>
+                                    Cadastrar Country
+                                </a>
+                            </div>
+
+                            <div class="card-body">
+                                
+                                <dialect:messages/>
+
+                                <div id="fragment-table-content">
+                                    <div th:fragment="fragment-table-content">
+                                        <div class="form-group" >
+                                            <table class="table table-bordered table-hover text-nowrap">
+                                                <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Name</th>
+                                                    <th>Region Name</th>
+                                                    <th style="width: 40px;"></th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr th:each="country, rowStat : ${page.content}"
+                                                    th:id="'tr-'+${rowStat.index}">
+
+                                                    <td th:text="${country.id}"></td>
+                                                    <td th:text="${country.name}"></td>
+                                                    <td th:text="${country.region.name}"></td>
+
+                                                    <td class="text-right py-0 align-middle">
+                                                        <a th:href="@{country/form/}+${country.id}" class="btn btn-default btn-xs btn-table">
+                                                            <i class="fas fa-pencil-alt"></i>
+                                                        </a>
+                                                        <a th:href="@{country/delete/}+${country.id}" class="btn btn-danger btn-xs btn-table">
+                                                            <i class="fas fa-trash"></i>
+                                                        </a>
+                                                        <!-- <button class="btn btn-danger btn-xs btn-table margin-left-5px" type="button" 
+                                                            th:id="'remove-country-'+${rowStat.index}"
+                                                            th:data-url="@{/country/delete/}+${country.id}"
+                                                            data-id-content="fragment-table-content"
+                                                            th:data-id-content-spinner="'tr-'+${rowStat.index}"
+                                                            th:data-sufixo="('a Country '+${country.name}+' ')"
+                                                            onclick="javascript:CountryList.RemoveCountry(this)">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button> -->
+                                                    </td>
+                                                </tr>
+                                                <tr th:if="${#lists.isEmpty(page.content)}">
+                                                    <td colspan="3" class="text-center">Nenhum registro encontrado.</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <span class="text-xs" th:text="${page.pageInfo}"></span>
+
+                                <div class="form-group">
+                                    <dialect:pagination page="${page}" />
+                                </div>
+
+			                    <!-- <div th:replace="@{layout/modal/modal-delete-ajax} :: fragment-modal-delete-ajax"></div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </th:block>
+
+    <th:block layout:fragment="self-page-javascripts">
+        <!-- JS da página -->
+        <script th:src="@{/resources/pages-js/country/country-list.js}"></script>
+    </th:block>
+</body>
+
+</html>

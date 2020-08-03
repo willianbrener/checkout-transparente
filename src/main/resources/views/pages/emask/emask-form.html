@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{core-layout/layout-pages/layout-master}">
+
+<head>
+    <title>Cadastrar EMask</title>
+    
+    <th:block layout:fragment="self-page-css">
+    </th:block>
+
+</head>
+
+<body>
+    <th:block layout:fragment="content">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-12">
+                        <h1 class="text-dark">EMasks</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <form id="form-emask" th:action="@{/emask/save}" th:object="${emask}" method="post">
+                                <div class="card-header">
+                                    <h3 class="card-title btn-float-right">
+                                        <i class="fas fa-plus"></i>
+                                        Cadastrar EMask
+                                    </h3>
+                                    <a th:href="@{/emask}" class="float-right btn btn-default btn-sm min-width-100px">
+                                        <i class="fas fa-search"></i>
+                                        Pesquisar EMasks
+                                    </a>
+                                </div>
+
+                                <div class="card-body">
+
+                                    <input type="hidden" th:field="${emask.id}"/>
+                                
+                                    <dialect:messages/>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group" >
+                                                <label for="opcoes" class="form-label">Opções</label>
+                                                <select id="opcoes" class="form-control chosen-select" th:field="${emask.opcaoDominio}"
+                                                    data-placeholder="-- Selecione uma Opção --">
+                                                    <option value=""></option>
+                                                    <option th:each="option : ${T(br.com.sga.core.model.dominio.OpcaoDominio).values()}"
+                                                        th:value="${option.name()}"
+                                                        th:text="${option.descricao}" >
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group" >
+                                                <label for="opcoes" class="form-label">Ativo/Inativo</label>
+                                                <select id="opcoes" class="form-control chosen-select" th:field="${emask.ativoInativo}"
+                                                    data-placeholder="-- Selecione uma Opção --">
+                                                    <option value=""></option>
+                                                    <option th:each="option : ${T(br.com.sga.core.model.dominio.AtivoInativoEnum).values()}"
+                                                        th:value="${option.name()}"
+                                                        th:text="${option.descricao}" >
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group" >
+                                                <label for="cpf" class="form-label">CPF</label>
+                                                <input id="cpf" type="text" class="form-control input-cpf" 
+                                                th:field="${emask.cpf}"
+                                                th:checkError="${emask.cpf}"  />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group" >
+                                                <label for="cnpj" class="form-label">CNPJ</label>
+                                                <input id="cnpj" type="text" class="form-control input-cnpj" 
+                                                th:field="${emask.cnpj}"
+                                                th:checkError="${emask.cnpj}"  />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group" >
+                                                <label for="data-fim" class="form-label">Data Início</label>
+                                                <input id="data-inicio" type="text" class="form-control input-date" 
+                                                th:field="${emask.dataInicio}"
+                                                th:checkError="${emask.dataInicio}"  />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group" >
+                                                <label for="data-fim" class="form-label">Data Fim</label>
+                                                <input id="data-fim" type="text" class="form-control input-date" 
+                                                th:field="${emask.dataFim}"
+                                                th:checkError="${emask.dataFim}"  />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group" >
+                                                <label for="data-hora" class="form-label">Data Hora</label>
+                                                <input id="data-hora" type="text" class="form-control input-date-time" 
+                                                th:field="${emask.dataHora}"
+                                                dialect:checkError="${emask.dataHora}"  />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group" >
+                                                <label for="ano-mes" class="form-label">Ano Mês</label>
+                                                <input id="ano-mes" type="text" class="form-control input-date-mes-ano" 
+                                                th:field="${emask.anoMesReferencia}"
+                                                dialect:checkError="${emask.anoMesReferencia}"  />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group" >
+                                                <label for="salario" class="form-label">Salário</label>
+                                                <input id="salario" type="text" class="form-control mascara-real" 
+                                                th:field="${emask.salario}"
+                                                dialect:checkError="${emask.salario}"  />
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group" >
+                                                <label for="porcentagem" class="form-label">Porcentagem</label>
+                                                <input id="porcentagem" type="text" class="form-control" 
+                                                th:field="${emask.porcentagem}"
+                                                dialect:checkError="${emask.porcentagem}"  />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="fragment-emask-list" class="border-top">
+                                        <div th:fragment="fragment-emask-list">
+                                            
+                                            <!-- <div class="col-sm-12">
+                                                <div class="alert alert-danger alert-dismissible" th:if="${not #strings.isEmpty(errosEMaskList)}">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                    <th:block th:each="error : ${errosEMaskList}">
+                                                        <dd><i class="icon fas fa-ban"></i><th:block th:text="#{error.message}"></th:block></dd>
+                                                    </th:block>
+                                                </div>
+                                            </div> -->
+
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group" >
+                                                        <label for="descricao" class="form-label">Descrição</label>
+                                                        <input id="descricao" type="text" class="form-control" 
+                                                            th:field="${emask.eMaskTelaDTO.elistMaskTela.descricao}"
+                                                            dialect:checkError="${emask.eMaskTelaDTO.elistMaskTela.descricao}"  />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group" >
+                                                        <button type="button" class="btn btn-primary btn-sm min-width-100px float-right"
+                                                            id="add-elistmask"
+                                                            th:data-url="@{/emask/eListMask/add}"
+                                                            data-id-content="fragment-emask-list"
+                                                            data-id-content-spinner="fragment-emask-list"
+                                                            onclick="javascript:EMaskForm.AddEListMask(this)">
+                                                            <i class="fas fa-plus"></i>
+                                                            Adicionar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="form-group table-responsive">
+                                                        <table class="table table-bordered table-hover text-nowrap">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>ID</th>
+                                                                <th>Descrição</th>
+                                                                <th style="width: 40px;"></th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            <tr th:each="eListMask, rowStat : ${emask.eListMasks}"
+                                                                th:id="'tr-'+${rowStat.index}">
+
+                                                                <td th:text="${eListMask.id}"></td>
+                                                                <td th:text="${eListMask.descricao}"></td>
+
+                                                                <td class="text-right py-0 align-middle">
+                                                                    <a th:href="@{emask/eListMask/edit/}+${location.id}" class="btn btn-default btn-xs btn-table">
+                                                                        <i class="fas fa-pencil-alt"></i>
+                                                                    </a>
+                                                                    <a th:href="@{emask/eListMask/delete/}+${location.id}" class="btn btn-danger btn-xs btn-table">
+                                                                        <i class="fas fa-trash"></i>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr th:if="${#lists.isEmpty(emask.eListMasks)}">
+                                                                <td colspan="3" class="text-center">Nenhum registro encontrado.</td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-footer">
+                                    <button type="submit" class="float-right btn btn-primary btn-sm min-width-100px button-loading-body">
+                                        <i class="fas fa-save"></i>
+                                        Salvar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </th:block>
+    
+	<th:block layout:fragment="self-page-javascripts">
+		<!-- JS da página -->
+        <script th:src="@{/resources/pages-js/emask/emask-form.js}"></script>
+	</th:block>
+</body>
+
+</html>
