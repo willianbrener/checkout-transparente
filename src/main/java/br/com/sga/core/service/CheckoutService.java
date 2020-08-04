@@ -330,39 +330,9 @@ public class CheckoutService {
 		}
 	}
 
-	public void addValue(CheckoutDTO checkoutDTO, Integer indice) {
-		if (indice != null && checkoutDTO != null && checkoutDTO.getProducts() != null 
-				&& !checkoutDTO.getProducts().isEmpty()) {
-			List<ProductDTO> productDTOs = checkoutDTO.getProducts();
-			ProductDTO produto = productDTOs.get(indice);
-			
-			if (produto != null) {
-				Integer novaQtdProduto = produto.getQuantidadeProduto() + 1;
-				produto.setQuantidadeProduto(novaQtdProduto);
-				produto.setPrecoTotalProduto(novaQtdProduto * produto.getPrecoProduto());
-			}
-		}
-		
-	}
-
-	public void removeValue(CheckoutDTO checkoutDTO, Integer indice) {
-		if (indice != null && checkoutDTO != null && checkoutDTO.getProducts() != null 
-				&& !checkoutDTO.getProducts().isEmpty()) {
-			List<ProductDTO> productDTOs = checkoutDTO.getProducts();
-			ProductDTO produto = productDTOs.get(indice);
-			
-			if (produto != null && produto.getQuantidadeProduto() != 0) {
-				Integer novaQtdProduto = produto.getQuantidadeProduto() - 1;
-				produto.setQuantidadeProduto(novaQtdProduto);
-				produto.setPrecoTotalProduto(novaQtdProduto * produto.getPrecoProduto());
-			}
-		}
-		
-	}
-
 	public void changeValue(CheckoutDTO checkoutDTO, Integer indice, Integer novaQuantidade) {
 		if (indice != null && checkoutDTO != null && checkoutDTO.getProducts() != null 
-				&& !checkoutDTO.getProducts().isEmpty() && novaQuantidade != null) {
+				&& !checkoutDTO.getProducts().isEmpty() && novaQuantidade != null && novaQuantidade > 0) {
 			List<ProductDTO> productDTOs = checkoutDTO.getProducts();
 			ProductDTO produto = productDTOs.get(indice);
 			

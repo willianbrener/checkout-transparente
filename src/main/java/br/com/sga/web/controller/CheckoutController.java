@@ -22,7 +22,7 @@ import br.com.sga.core.service.CheckoutService;
 import br.com.uol.pagseguro.api.transaction.search.TransactionDetail;
 
 @Controller
-@RequestMapping("/checkout")
+@RequestMapping("/custom-checkout")
 public class CheckoutController {
 
 	@Autowired
@@ -55,31 +55,6 @@ public class CheckoutController {
 
 		return mv;
 	}
-
-	@PostMapping("/product/add-value/{indice}")
-	public ModelAndView addValue(@PathVariable Integer indice, CheckoutDTO checkoutDTO, BindingResult result, RedirectAttributes redirectAttributes) {
-		ModelAndView mv = new ModelAndView("pages/checkout/checkout-form :: fragmento-tabela");
-
-		this.checkoutService.addValue(checkoutDTO, indice);
-		checkoutDTO.setPrecoTotal(checkoutService.calculaValorTotalProdutos(checkoutDTO.getProducts()));
-
-		mv.addObject("checkoutDTO", checkoutDTO);
-
-		return mv;
-	}
-
-	@PostMapping("/product/remove-value/{indice}")
-	public ModelAndView removeValue(@PathVariable Integer indice, CheckoutDTO checkoutDTO, BindingResult result, RedirectAttributes redirectAttributes) {
-		ModelAndView mv = new ModelAndView("pages/checkout/checkout-form :: fragmento-tabela");
-
-		this.checkoutService.removeValue(checkoutDTO, indice);
-		checkoutDTO.setPrecoTotal(checkoutService.calculaValorTotalProdutos(checkoutDTO.getProducts()));
-
-		mv.addObject("checkoutDTO", checkoutDTO);
-
-		return mv;
-	}
-
 
 	@PostMapping("/payment")
 	public ModelAndView payment(CheckoutDTO checkoutDTO, BindingResult result, RedirectAttributes redirectAttributes) {
@@ -115,7 +90,7 @@ public class CheckoutController {
 	}
 
 
-	@GetMapping("/session")
+	@GetMapping("/pagseguro/session")
 	public @ResponseBody String sessionPagSeguro() {
 		return checkoutService.getIdPagSeguro();
 	}

@@ -13,14 +13,12 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.format.FormatterRegistry;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.FixedLocaleResolver;
-import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
@@ -39,7 +37,7 @@ import nz.net.ultraq.thymeleaf.LayoutDialect;
 @Configuration
 @EnableWebMvc
 @EnableSpringDataWebSupport
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
 @ComponentScan(basePackages = { "br.com.sga.web.controller"})
 public class WebMvcConfiguration extends WebMvcConfigurerAdapter implements ApplicationContextAware {
 
@@ -54,7 +52,7 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter implements Appl
         SpringTemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(thymeleafTemplateResolver());
         templateEngine.setEnableSpringELCompiler(true);
-        templateEngine.addDialect(new SpringSecurityDialect());
+       // templateEngine.addDialect(new SpringSecurityDialect());
         templateEngine.addDialect(new LayoutDialect());
         templateEngine.addDialect(new AppDialect());
         return templateEngine;

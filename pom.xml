@@ -20,8 +20,11 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 		<maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+		<tomcat.version>9.0.37</tomcat.version>
+		<start-class>br.com.sga.SpringBootRun</start-class>
 	</properties>
 
 	<dependencies>
@@ -69,10 +72,10 @@
 			<version>5.5.13.1</version>
 		</dependency>
 
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>nz.net.ultraq.thymeleaf</groupId>
@@ -85,11 +88,11 @@
 			<version>3.0.11.RELEASE</version>
 		</dependency>
 
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
 			<version>3.0.4.RELEASE</version>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>commons-lang</groupId>
@@ -144,6 +147,7 @@
 			<filter>src/main/filters/filter.properties</filter>
 			<filter>src/main/filters/pagseguro.properties</filter>
 		</filters>
+		
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

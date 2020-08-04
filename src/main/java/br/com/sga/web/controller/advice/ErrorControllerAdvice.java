@@ -1,7 +1,8 @@
 package br.com.sga.web.controller.advice;
 
+import java.nio.file.AccessDeniedException;
+
 import org.apache.commons.lang.exception.ExceptionUtils;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

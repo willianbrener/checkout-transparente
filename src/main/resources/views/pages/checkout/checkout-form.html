@@ -24,7 +24,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="card">
-								<form id="formCheckout" th:action="@{/checkout/payment}" th:object="${checkoutDTO}" method="post">
+								<form id="formCheckout" th:action="@{/custom-checkout/payment}" th:object="${checkoutDTO}" method="post">
 									
 									<!-- <div class="row">
 										<div class="col-md-12">
@@ -71,7 +71,7 @@
 																			<div class="col-xs-4 col-sm-4 col-md-4">
 																				<button class="btn btn-danger btn-sm btn-circle" type="button"
 																					th:id="'remove-value-product-'+${rowStat.index}"
-																					th:data-url="@{/checkout/product/remove-value/}+${rowStat.index}"
+																					th:data-url="@{/custom-checkout/product/remove-value/}+${rowStat.index}"
 																					data-id-content="fragmento-tabela"
 																					th:data-id-content-spinner="'fragmento-tabela'"
 																					onclick="javascript:CheckoutForm.removeProductValue(this)">
@@ -84,7 +84,7 @@
 																			<div class="col-xs-4 col-sm-4 col-md-4">
 																				<button class="btn btn-success btn-sm btn-circle" type="button"
 																					th:id="'add-value-product-'+${rowStat.index}"
-																					th:data-url="@{/checkout/product/add-value/}+${rowStat.index}"
+																					th:data-url="@{/custom-checkout/product/add-value/}+${rowStat.index}"
 																					data-id-content="fragmento-tabela"
 																					th:data-id-content-spinner="'fragmento-tabela'"
 																					onclick="javascript:CheckoutForm.addProductValue(this)">
@@ -166,7 +166,7 @@
 															<input th:id="'old-qtd-product-'+${rowStat.index}" type="hidden" th:value="${checkoutDTO.products[__${rowStat.index}__].quantidadeProduto}">
 															<input type="number" class="form-control text-center" th:value="${checkoutDTO.products[__${rowStat.index}__].quantidadeProduto}"
 																th:id="'qtd-product-'+${rowStat.index}"
-																th:data-url="@{/checkout/product/change-value/}+${rowStat.index}"
+																th:data-url="@{/custom-checkout/product/change-value/}+${rowStat.index}"
 																data-id-content="fragmento-tabela"
 																th:data-id-content-spinner="'fragmento-tabela'"
 																onchange="javascript:CheckoutForm.ChangeQuantity(this)">

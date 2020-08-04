@@ -1,10 +1,5 @@
 package br.com.sga.web.config;
 
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-
 public class WebX509SecurityConfiguration {
 }
 //@EnableWebSecurity

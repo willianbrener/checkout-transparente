@@ -136,7 +136,7 @@ $(document).ready(function() {
 	//checkoutCallbacks.add(new CheckoutPaymentForm.PagSeguroCheckout());
 	
 	$.ajax({
-		url: '/checkout/session',
+		url: '/checkout/custom-checkout/pagseguro/session',
 		type: 'GET'
 	}).done(function(data) {
 		if(data){

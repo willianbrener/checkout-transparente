@@ -1,52 +1,35 @@
 package br.com.sga.web.config.init;
 
-import java.util.EnumSet;
-
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.SessionCookieConfig;
-import javax.servlet.SessionTrackingMode;
-
-//import org.apache.commons.lang3.ArrayUtils;
-import org.springframework.web.context.request.RequestContextListener;
-import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-
-import br.com.sga.core.config.init.DomainInitializer;
-import br.com.sga.web.config.WebMvcConfiguration;
-import br.com.sga.web.config.WebX509SecurityConfiguration;
-
 /**
  * Classe responsável por iniciar as configurações da aplicação
  */
-public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class ApplicationInitializer /*extends AbstractAnnotationConfigDispatcherServletInitializer*/ {
 
-	@Override
+	/*@Override
 	protected Class<?>[] getRootConfigClasses() {
 //		try {
-			/***
+			*//***
 			 * Carrega classes de configuração comuns a todos os tipos de
 			 * implementações
-			 ***/
+			 ***//*
 			Class<?>[] rootConfigClasses = DomainInitializer.getRootConfigClasses();
 
 			// Configurações de segurança da aplicação
 //			rootConfigClasses = ArrayUtils.add(rootConfigClasses, WebX509SecurityConfiguration.class);
 
 			return rootConfigClasses;
-//		} catch (Exception e) {
-//			throw new SefazRuntimeException("Failed to initialize Root Configuration Classes", e);
-//		}
-	}
+	}*/
+
 
 	/**
 	 * Retorna a classe que instrui o Dispatcher a localizar os Controllers.
 	 * 
 	 * @return
 	 */
-	@Override
+	/*@Override
 	protected Class<?>[] getServletConfigClasses() {
 		return new Class<?>[] { WebMvcConfiguration.class};
-	}
+	}*/
 
 	/**
 	 * Método responsável por definir o padrão de URL que será delegado para o
@@ -57,12 +40,12 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
 	 * 
 	 * @return
 	 */
-	@Override
+	/*@Override
 	protected String[] getServletMappings() {
 		return new String[] { "/" };
-	}
+	}*/
 
-	@Override
+	/*@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		
 		//configuração do cookie no path da aplicação para evitar erro de substituir o JSESSIONID
@@ -83,5 +66,5 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
 		servletContext.addListener(new RequestContextListener());
 
 		super.onStartup(servletContext);
-	}
+	}*/
 }
