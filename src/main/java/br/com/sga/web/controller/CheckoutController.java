@@ -39,7 +39,19 @@ public class CheckoutController {
 
 		ProductDTO products = new ProductDTO(1,"Tenis Nike", "/resources/core-images/checkout/tenisnike.png", 1.00, 1, 1.00);
 
-		mv.addObject("checkoutDTO", new CheckoutDTO(0.005, Arrays.asList(products)));
+		mv.addObject("checkoutDTO", new CheckoutDTO(1.00, Arrays.asList(products)));
+
+		return mv;
+	}
+	
+	@PostMapping("/product/change-value/{indice}/{novaQuantidade}")
+	public ModelAndView changeValue(@PathVariable Integer indice, @PathVariable Integer novaQuantidade, CheckoutDTO checkoutDTO, BindingResult result, RedirectAttributes redirectAttributes) {
+		ModelAndView mv = new ModelAndView("pages/checkout/checkout-form :: fragmento-tabela");
+
+		this.checkoutService.changeValue(checkoutDTO, indice, novaQuantidade);
+		checkoutDTO.setPrecoTotal(checkoutService.calculaValorTotalProdutos(checkoutDTO.getProducts()));
+
+		mv.addObject("checkoutDTO", checkoutDTO);
 
 		return mv;
 	}

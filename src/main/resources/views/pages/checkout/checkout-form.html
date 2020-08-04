@@ -26,19 +26,119 @@
 							<div class="card">
 								<form id="formCheckout" th:action="@{/checkout/payment}" th:object="${checkoutDTO}" method="post">
 									
+									<!-- <div class="row">
+										<div class="col-md-12">
+											<div id="fragmento-tabela">
+												<div th:fragment="fragmento-tabela">
+												
+													<input type="hidden" th:field="${checkoutDTO.precoTotal}" />
+												
+													<div class="table-responsive">
+														<table id="cart" class="table table-hover table-condensed fixed">
+															<thead>
+																<tr>
+																	<th style="width: 390px;" class="text-center">Produto</th>
+																	<th style="width: 150px;" class="text-center">Preço Unitário</th>
+																	<th style="width: 170px;" class="text-center">Quantidade</th>
+																	<th style="width: 150px;" class="text-center">Subtotal</th>
+																	<th class="text-center"></th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr th:each="product, rowStat : ${checkoutDTO.products}" th:id="'tr-produto-'+${rowStat.index}">
+																	<input type="hidden" th:field="${checkoutDTO.products[__${rowStat.index}__].nomeProduto}" />
+																	<input type="hidden" th:field="${checkoutDTO.products[__${rowStat.index}__].fotoProduto}" />
+																	<input type="hidden" th:field="${checkoutDTO.products[__${rowStat.index}__].precoProduto}" />
+																	<input type="hidden" th:field="${checkoutDTO.products[__${rowStat.index}__].quantidadeProduto}" />
+																	<input type="hidden" th:field="${checkoutDTO.products[__${rowStat.index}__].precoTotalProduto}" />
+																	
+																	<td data-th="Product" class="text-center">
+																		<div class="row">
+																			<div class="col-md-3 hidden-xs">
+																				<img class="img-brand-link-full" th:src="@{${checkoutDTO.products[__${rowStat.index}__].fotoProduto}}">
+																			</div>
+																			<div class="col-md-9">
+																				<h4 class="nomargin" th:text="${checkoutDTO.products[__${rowStat.index}__].nomeProduto}"></h4>
+																			</div>
+																		</div>
+																	</td>
+																	
+																	<td data-th="Price" class="text-center" th:id="'th-preco-'+ ${checkoutDTO.products[__${rowStat.index}__].id}" 
+																		th:text="${#numbers.formatDecimal(checkoutDTO.products[__${rowStat.index}__].precoProduto, 0, 'COMMA', 2, 'POINT')}"></td>
+																	
+																	<td data-th="Quantity" class="text-center">
+																		<div class="row">
+																			<div class="col-xs-4 col-sm-4 col-md-4">
+																				<button class="btn btn-danger btn-sm btn-circle" type="button"
+																					th:id="'remove-value-product-'+${rowStat.index}"
+																					th:data-url="@{/checkout/product/remove-value/}+${rowStat.index}"
+																					data-id-content="fragmento-tabela"
+																					th:data-id-content-spinner="'fragmento-tabela'"
+																					onclick="javascript:CheckoutForm.removeProductValue(this)">
+																					<i class="fa fa-minus"></i>
+																				</button>
+																			</div>
+																			<div class="col-xs-4 col-sm-4 col-md-4">
+																				<input class="form-control" th:value="${checkoutDTO.products[__${rowStat.index}__].quantidadeProduto}" readonly>
+																			</div>
+																			<div class="col-xs-4 col-sm-4 col-md-4">
+																				<button class="btn btn-success btn-sm btn-circle" type="button"
+																					th:id="'add-value-product-'+${rowStat.index}"
+																					th:data-url="@{/checkout/product/add-value/}+${rowStat.index}"
+																					data-id-content="fragmento-tabela"
+																					th:data-id-content-spinner="'fragmento-tabela'"
+																					onclick="javascript:CheckoutForm.addProductValue(this)">
+																					<i class="fa fa-plus"></i>
+																				</button>
+																			</div>
+																		</div>
+																	</td>
+																	
+																	<td data-th="Subtotal" class="text-center" th:id="'th-subtotal-'+ ${checkoutDTO.products[__${rowStat.index}__].id}" 
+																		th:text="${#numbers.formatDecimal(checkoutDTO.products[__${rowStat.index}__].precoTotalProduto, 0, 'COMMA', 2, 'POINT')}"></td>
+																	
+																	<td data-th="" class="text-center actions">
+																		<button class="btn btn-danger btn-sm" type="button"><i class="ion-ios-trash"></i></button>
+																	</td>
+																</tr>
+															</tbody>
+															<tfoot>
+																<tr class="visible-xs">
+																	<td colspan="5" class="text-center">
+																		<strong th:text="'Total '"></strong>
+																		<strong id="totalProdutos" th:text="${#numbers.formatDecimal(checkoutDTO.precoTotal, 0, 'COMMA', 2, 'POINT')}"></strong>
+																	</td>
+																</tr>
+															</tfoot>
+														</table>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									
+									<div class="mb-3 row">
+										<div class="col-md-8">
+										</div>
+										<div class="col-md-4">
+											<button class="btn btn-success btn-block" type="submit" >
+												Realizar Pagamento 
+												<i class="fa fa-angle-right"></i>
+											</button>
+										</div>
+									</div> -->
 									<div id="fragmento-tabela">
 										<div th:fragment="fragmento-tabela">
 										
 											<input type="hidden" th:field="${checkoutDTO.precoTotal}" />
-										
 											<table id="cart" class="table table-hover table-condensed">
 												<thead>
 													<tr>
 														<th style="width:50%">Produto</th>
-														<th style="width:15%">Preço Unitário</th>
-														<th style="width:15%">Quantidade</th>
-														<th style="width:15%" class="text-center">Subtotal</th>
-														<th style="width:5%"></th>
+														<th style="width:10%">Preço</th>
+														<th style="width:8%">Quantidade</th>
+														<th style="width:22%" class="text-center">Subtotal</th>
+														<th style="width:10%"></th>
 													</tr>
 												</thead>
 												<tbody>
@@ -49,69 +149,44 @@
 														<input type="hidden" th:field="${checkoutDTO.products[__${rowStat.index}__].quantidadeProduto}" />
 														<input type="hidden" th:field="${checkoutDTO.products[__${rowStat.index}__].precoTotalProduto}" />
 														
-														<td data-th="Product">
+														<td data-th="Produto">
 															<div class="row">
-																<div class="col-md-3 hidden-xs">
-																	<img class="img-brand-link-full" th:src="@{${checkoutDTO.products[__${rowStat.index}__].fotoProduto}}">
+																<div class="col-sm-3 hidden-xs">
+																	<img alt="..." width="100" height="100"	class="img-responsive" th:src="@{${checkoutDTO.products[__${rowStat.index}__].fotoProduto}}">
 																</div>
-																<div class="col-md-9">
+																<div class="col-sm-9">
 																	<h4 class="nomargin" th:text="${checkoutDTO.products[__${rowStat.index}__].nomeProduto}"></h4>
 																</div>
 															</div>
 														</td>
-														<td data-th="Price" th:id="'th-preco-'+ ${checkoutDTO.products[__${rowStat.index}__].id}" 
-															th:text="${#numbers.formatDecimal(checkoutDTO.products[__${rowStat.index}__].precoProduto, 0, 'COMMA', 2, 'POINT')}"></td>
-														<td data-th="Quantity">
-															<!-- <input type="number" th:id="*{products[__${rowStat.index}__].nomeProduto}" 
-															class="form-control text-center qtdProdutos" th:value="${checkoutDTO.products[__${rowStat.index}__].quantidadeProduto}"
-															th:onchange="'new CheckoutForm.ChangeQuantity(\'' + ${checkoutDTO.products[__${rowStat.index}__].id} + '\');'"
-															th:onkeyup="'new CheckoutForm.ChangeQuantity(\'' + ${checkoutDTO.products[__${rowStat.index}__].id} + '\');'"
-															th:onkeydown="'new CheckoutForm.ChangeQuantity(\'' + ${checkoutDTO.products[__${rowStat.index}__].id} + '\');'"> -->
-															
-															<div class="row">
-																<div class="col-md-4">
-																	<button class="btn btn-danger btn-sm btn-circle" type="button"
-																		th:id="'remove-value-product-'+${rowStat.index}"
-																		th:data-url="@{/checkout/product/remove-value/}+${rowStat.index}"
-																		data-id-content="fragmento-tabela"
-																		th:data-id-content-spinner="'fragmento-tabela'"
-																		onclick="javascript:CheckoutForm.removeProductValue(this)">
-																		<i class="fa fa-minus"></i>
-																	</button>
-																</div>
-																<div class="col-md-4">
-																	<input class="form-control" th:value="${checkoutDTO.products[__${rowStat.index}__].quantidadeProduto}" readonly>
-																</div>
-																<div class="col-md-4">
-																	<button class="btn btn-success btn-sm btn-circle" type="button"
-																		th:id="'add-value-product-'+${rowStat.index}"
-																		th:data-url="@{/checkout/product/add-value/}+${rowStat.index}"
-																		data-id-content="fragmento-tabela"
-																		th:data-id-content-spinner="'fragmento-tabela'"
-																		onclick="javascript:CheckoutForm.addProductValue(this)">
-																		<i class="fa fa-plus"></i>
-																	</button>
-																</div>
-															</div>
+														<td class="text-center" data-th="Preço" th:id="'th-preco-'+ ${checkoutDTO.products[__${rowStat.index}__].id}" 
+																				th:text="${checkoutDTO.products[__${rowStat.index}__].precoProduto}"></td>
+																				
+														<td class="text-center" data-th="Quantidade">
+															<input th:id="'old-qtd-product-'+${rowStat.index}" type="hidden" th:value="${checkoutDTO.products[__${rowStat.index}__].quantidadeProduto}">
+															<input type="number" class="form-control text-center" th:value="${checkoutDTO.products[__${rowStat.index}__].quantidadeProduto}"
+																th:id="'qtd-product-'+${rowStat.index}"
+																th:data-url="@{/checkout/product/change-value/}+${rowStat.index}"
+																data-id-content="fragmento-tabela"
+																th:data-id-content-spinner="'fragmento-tabela'"
+																onchange="javascript:CheckoutForm.ChangeQuantity(this)">
 														</td>
 														
-														<td data-th="Subtotal" class="text-center" th:id="'th-subtotal-'+ ${checkoutDTO.products[__${rowStat.index}__].id}" 
-															th:text="${#numbers.formatDecimal(checkoutDTO.products[__${rowStat.index}__].precoTotalProduto, 0, 'COMMA', 2, 'POINT')}"></td>
+														<td class="text-center" data-th="Subtotal" th:id="'th-subtotal-'+ ${checkoutDTO.products[__${rowStat.index}__].id}" 
+																				th:text="${checkoutDTO.products[__${rowStat.index}__].precoTotalProduto}"></td>
 														
-														<td class="actions" data-th="">
+														<td  class="text-center actions" data-th="">
 															<button class="btn btn-danger btn-sm" type="button"><i class="ion-ios-trash"></i></button>
 														</td>
 													</tr>
 												</tbody>
 												<tfoot>
-													<tr class="visible-xs">
-														<td colspan="5" class="text-center">
-															<strong th:text="'Total '"></strong>
-															<strong id="totalProdutos" th:text="${#numbers.formatDecimal(checkoutDTO.precoTotal, 0, 'COMMA', 2, 'POINT')}"></strong>
-														</td>
-													</tr>
 													<tr>
-														<td colspan="3" class="hidden-xs"></td>
+														<td colspan="2" class="hidden-xs"></td>
+														<td colspan="1" class="hidden-xs text-center">
+															<strong th:text="'Total '"></strong>
+															<strong id="totalProdutos" th:text="${checkoutDTO.precoTotal}"></strong>
+														</td>
 														<td colspan="2">
 															<button class="btn btn-success btn-block" type="submit" >
 																Realizar Pagamento 
@@ -123,7 +198,6 @@
 											</table>
 										</div>
 									</div>
-									
 								</form>
 							</div>
 						</div>

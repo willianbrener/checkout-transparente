@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -35,7 +36,7 @@ import br.com.sga.core.util.DateUtil;
 @EnableJpaRepositories(basePackages = "br.com.sga.core.repository")
 @EnableTransactionManagement
 @EntityScan(basePackages = "br.com.sga.core.model")
-public class SpringBootRun {
+public class SpringBootRun extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootRun.class, args);

@@ -70,7 +70,8 @@
 											<div class="row">
 												<div class="col-md-5 mb-3">
 													<label class="form-label" for="name">Nome<span style="color:red;"> *</span></label>
-													<input type="text" class="form-control" id="name"  th:field="${paymentDTO.senderDTO.name}" required>
+													<input type="text" class="form-control" id="name"  th:field="${paymentDTO.senderDTO.name}" 
+													required placeholder="Nome">
 													<div class="invalid-feedback">
 														Please choose a username.
 													</div>
@@ -78,31 +79,33 @@
 												<div class="col-md-4 mb-3">
 													<label class="form-label" for="lastName">CPF<span style="color:red;"> *</span></label>
 													<input type="text" class="form-control" id="cpf" 
-													th:field="${paymentDTO.senderDTO.cpf}" required>
+													th:field="${paymentDTO.senderDTO.cpf}" required placeholder="CPF">
 												</div>
 												<div class="col-md-3 mb-3">
 													<label class="form-label" for="birthDate">Data Aniversário<span style="color:red;"> *</span></label>
 													<input type="text" class="form-control" id="birthDate" 
-													th:field="${paymentDTO.senderDTO.birthDate}" required>
+													th:field="${paymentDTO.senderDTO.birthDate}" required placeholder="Data Aniversário">
 												</div>
 											</div>
 											<div class="row">
 												<div class="col-md-7 mb-3">
 													<label class="form-label" for="email">Email<span style="color:red;"> *</span></label>
 													<input type="email" class="form-control" id="email" 
-													th:field="${paymentDTO.senderDTO.email}" required>
+													th:field="${paymentDTO.senderDTO.email}" required placeholder="E-mail">
 												</div>
 												<div class="col-md-5 mb-3">
-													<div class="col-md-12 mb-3">
-														<label class="form-label" for="email">Telefone(DDD)<span style="color:red;"> *</span></label>
-														<div class="row">
-															<div class="col-md-3 mb-3">
-																<input type="text" class="form-control" id="areaCode" 
-																th:field="${paymentDTO.senderDTO.phoneDTO.areaCode}" required>
-															</div>
-															<div class="col-md-9 mb-3">
-																<input type="text" class="form-control" id="phoneNumber" 
-																th:field="${paymentDTO.senderDTO.phoneDTO.number}" required>
+													<div class="row">
+														<div class="col-md-12 mb-3">
+															<label class="form-label" for="email">Telefone<span style="color:red;"> *</span></label>
+															<div class="row">
+																<div class="col-xs-3 col-sm-3 col-md-3 mb-3">
+																	<input type="text" class="form-control" id="areaCode" 
+																	th:field="${paymentDTO.senderDTO.phoneDTO.areaCode}" required placeholder="DDD">
+																</div>
+																<div class="col-xs-9 col-sm-9 col-md-9 mb-3">
+																	<input type="text" class="form-control" id="phoneNumber" 
+																	th:field="${paymentDTO.senderDTO.phoneDTO.number}" required placeholder="Número">
+																</div>
 															</div>
 														</div>
 													</div>
@@ -117,17 +120,17 @@
 												<div class="col-md-6 mb-3">
 													<label class="form-label" for="endereco">Endereço<span style="color:red;"> *</span></label>
 													<input type="text" class="form-control" id="endereco" 
-													th:field="${paymentDTO.senderDTO.addressDTO.street}" required>
+													th:field="${paymentDTO.senderDTO.addressDTO.street}" required placeholder="Endereço">
 												</div>
 												<div class="col-md-4 mb-3">
 													<label class="form-label" for="bairro">Bairro<span style="color:red;"> *</span></label>
 													<input type="text" class="form-control" id="bairro" 
-													th:field="${paymentDTO.senderDTO.addressDTO.district}" required>
+													th:field="${paymentDTO.senderDTO.addressDTO.district}" required placeholder="Bairro">
 												</div>
 												<div class="col-md-2 mb-3">
 													<label class="form-label" for="numero">Numero<span style="color:red;"> *</span></label>
 													<input type="text" class="form-control" id="numero" 
-													th:field="${paymentDTO.senderDTO.addressDTO.number}" required>
+													th:field="${paymentDTO.senderDTO.addressDTO.number}" required placeholder="Número">
 												</div>
 											</div>
 											
@@ -135,7 +138,7 @@
 												<div class="col-md-12 mb-3">
 													<label class="form-label" for="complemento">Complemento<span style="color:red;"> *</span></label>
 													<input type="text" class="form-control" id="complemento" 
-													 th:field="${paymentDTO.senderDTO.addressDTO.complement}" required>
+													 th:field="${paymentDTO.senderDTO.addressDTO.complement}" required placeholder="Complemento">
 												</div>
 											</div>
 
@@ -159,7 +162,7 @@
 												<div class="col-md-4 mb-3">
 													<label for="zip">CEP<span style="color:red;"> *</span></label>
 													<input type="text" class="form-control" id="zip" 
-													 th:field="${paymentDTO.senderDTO.addressDTO.postalCode}" required>
+													 th:field="${paymentDTO.senderDTO.addressDTO.postalCode}" required placeholder="CEP">
 												</div>
 											</div>
 											<hr class="mb-4">
@@ -183,32 +186,32 @@
 											<div class="pagseguro-form pagseguro-creditCard pagseguro-debitCard" style="display:none;">
 												<div class="row">
 													<div class="col-md-6 mb-3">
-														<label for="cc-name">Nome cartão<span style="color:red;"> *</span></label>
+														<label for="cc-name">Nome Cartão<span style="color:red;"> *</span></label>
 														<input type="text" th:field="${paymentDTO.holderDTO.name}" class="form-control" id="cc-name" 
-														placeholder="" required>
+														placeholder="Nome Cartão" required>
 														<small class="text-muted">Nome escrito no cartão</small>
 													</div>
 													<div class="col-md-6 mb-3">
-														<label for="cc-number">Número cartão<span style="color:red;"> *</span></label>
+														<label for="cc-number">Número Cartão<span style="color:red;"> *</span></label>
 														<input type="text" class="form-control input-numero-cartao" 
-														th:field="${paymentDTO.holderDTO.cardNumber}" id="cc-number" placeholder="" required>
+														th:field="${paymentDTO.holderDTO.cardNumber}" id="cc-number" placeholder="Número Cartão" required>
 													</div>
 												</div>
 												<div class="row">
 													<div class="col-md-3 mb-3">
 														<label for="cc-expiration">Expiração<span style="color:red;"> *</span></label>
-														<input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+														<input type="text" class="form-control" id="cc-expiration" placeholder="Expiração" required>
 													</div>
 													
 													<div class="col-md-2 mb-3">
 														<label for="cc-expiration">CVV<span style="color:red;"> *</span></label>
-														<input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+														<input type="text" class="form-control" id="cc-cvv" placeholder="CVV" required>
 													</div>
 													
 													<div class="col-md-7 mb-3">
-														<label for="installments">Parcelas</label>
+														<label for="installments">Parcelas<span style="color:red;"> *</span></label>
 														<select class="form-control" id="installments" name="installmentSelected"
-															th:field="${paymentDTO.installmentSelected}" placeholder="" >
+															th:field="${paymentDTO.installmentSelected}" >
 															<option value="">Selecione a quantidade de parcelas</option>
 														</select>
 													</div>

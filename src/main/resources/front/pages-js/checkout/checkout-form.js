@@ -13,24 +13,14 @@ CheckoutForm.removeProductValue = function(elem) {
 	}
 }
 
-CheckoutForm.ChangeQuantity = function(id) {
-	if(id){
+CheckoutForm.ChangeQuantity = function(elem) {
+	if(elem){
+		var id = $(elem).attr('id');
+		var newVal = $(elem).val();
+		var url = $(elem).data('url');
+		$(elem).data('url', url+'/'+newVal);
 		
-		/*$('#totalProdutos').each(function() {
-			var valorTotal = parseFloat($(this).text());
-			var precoProduto = parseFloat($('#th-preco-'+ id).val());
-			var subtotalProduto = parseFloat($('#th-subtotal-'+ id).val());
-			
-			
-			if ($(this).data('old-value') < $(this).val()) {
-		        alert('Alert up');
-		    } else {
-		        alert('Alert dowm');
-		    }
-			console.log(valorTotal);
-			console.log($('#th-preco-'+ id).val());
-			console.log(subtotalProduto);
-		});*/
+		new App.RequisicaoFormAjax.PorElemento(elem).requisitar();
 	}
 }
 

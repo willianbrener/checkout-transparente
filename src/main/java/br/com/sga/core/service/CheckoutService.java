@@ -359,4 +359,17 @@ public class CheckoutService {
 		}
 		
 	}
+
+	public void changeValue(CheckoutDTO checkoutDTO, Integer indice, Integer novaQuantidade) {
+		if (indice != null && checkoutDTO != null && checkoutDTO.getProducts() != null 
+				&& !checkoutDTO.getProducts().isEmpty() && novaQuantidade != null) {
+			List<ProductDTO> productDTOs = checkoutDTO.getProducts();
+			ProductDTO produto = productDTOs.get(indice);
+			
+			if (produto != null) {
+				produto.setQuantidadeProduto(novaQuantidade);
+				produto.setPrecoTotalProduto(novaQuantidade * produto.getPrecoProduto());
+			}
+		}
+	}
 }
