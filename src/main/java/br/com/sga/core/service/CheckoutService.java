@@ -42,9 +42,11 @@ import br.com.uol.pagseguro.api.common.domain.enums.State;
 import br.com.uol.pagseguro.api.credential.Credential;
 import br.com.uol.pagseguro.api.exception.PagSeguroBadRequestException;
 import br.com.uol.pagseguro.api.exception.ServerError;
+import br.com.uol.pagseguro.api.http.JSEHttpClient;
 import br.com.uol.pagseguro.api.session.CreatedSession;
 import br.com.uol.pagseguro.api.transaction.register.DirectPaymentRegistrationBuilder;
 import br.com.uol.pagseguro.api.transaction.search.TransactionDetail;
+import br.com.uol.pagseguro.api.utils.logging.CommonsLoggerFactory;
 
 @Service
 public class CheckoutService {
@@ -84,9 +86,12 @@ public class CheckoutService {
 
 	public TransactionDetail realizaCompra(PaymentDTO paymentDTO) throws BusinessValidationException {
 		try {
-			final PagSeguro pagSeguro = PagSeguro.instance(
-					Credential.sellerCredential(emailPagSeguro, tokenPagSeguro),
-					PagSeguroEnv.fromName(ambientePagSeguro));
+			
+			PagSeguro pagSeguro = PagSeguro.instance(new CommonsLoggerFactory(), 
+				new JSEHttpClient(), 
+				Credential.sellerCredential(emailPagSeguro, tokenPagSeguro), 
+				PagSeguroEnv.fromName(ambientePagSeguro)
+			);
 			
 			List<PaymentItem> items = new ArrayList<>();
 			Sender sender = null;
@@ -319,9 +324,11 @@ public class CheckoutService {
 
 	public String getIdPagSeguro() {
 		try {
-			final PagSeguro pagSeguro = PagSeguro.instance(
-					Credential.sellerCredential(emailPagSeguro, tokenPagSeguro),
-					PagSeguroEnv.fromName(ambientePagSeguro));
+			final PagSeguro pagSeguro = PagSeguro.instance(new CommonsLoggerFactory(), 
+					new JSEHttpClient(), 
+					Credential.sellerCredential(emailPagSeguro, tokenPagSeguro), 
+					PagSeguroEnv.fromName(ambientePagSeguro)
+				);
 			
 			CreatedSession createdSession = pagSeguro.sessions().create();
 			return createdSession.getId();
