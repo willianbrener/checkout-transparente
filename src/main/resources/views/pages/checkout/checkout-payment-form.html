@@ -48,7 +48,7 @@
 										</ul>
 									</div>
 									<div class="col-md-8 order-md-1">
-										<form id="formPayment" class="needs-validation" th:action="@{/custom-checkout/payment/finish}" th:object="${paymentDTO}" method="post" novalidate>
+										<form id="formPayment" class="needs-validation" th:action="@{/custom-checkout/payment/finish}" th:object="${paymentDTO}" method="post" novalidate autocomplete="off">
 											
 											<input type="hidden" id="cartaoToken" name="cartaoToken" th:field="${paymentDTO.creditCardToken}" />
 											<input type="hidden" id="sessionPaymentId" name="sessionPaymentId" th:field="${paymentDTO.sessionPaymentId}" />
@@ -188,13 +188,14 @@
 													<div class="col-md-6 mb-3">
 														<label for="cartaoNome">Nome Cartão<span style="color:red;"> *</span></label>
 														<input type="text" th:field="${paymentDTO.holderDTO.name}" class="form-control" id="cartaoNome" 
-														placeholder="Nome Cartão" required>
+														placeholder="Nome Cartão" required autocomplete="new-nome-Ca">
 														<small class="text-muted">Nome escrito no cartão</small>
 													</div>
 													<div class="col-md-6 mb-3">
 														<label for="cartaoNume">Número Cartão<span style="color:red;"> *</span></label>
 														<input type="text" class="form-control input-numero-cartao" 
-														th:field="${paymentDTO.holderDTO.cardNumber}" id="cartaoNume" placeholder="Número Cartão" required>
+														th:field="${paymentDTO.holderDTO.cardNumber}" id="cartaoNume" placeholder="Número Cartão" required
+														autocomplete="new-Ca">
 													</div>
 												</div>
 												<div class="row">
