@@ -50,7 +50,7 @@
 									<div class="col-md-8 order-md-1">
 										<form id="formPayment" class="needs-validation" th:action="@{/custom-checkout/payment/finish}" th:object="${paymentDTO}" method="post" novalidate>
 											
-											<input type="hidden" id="creditCardToken" name="creditCardToken" th:field="${paymentDTO.creditCardToken}" />
+											<input type="hidden" id="cartaoToken" name="cartaoToken" th:field="${paymentDTO.creditCardToken}" />
 											<input type="hidden" id="sessionPaymentId" name="sessionPaymentId" th:field="${paymentDTO.sessionPaymentId}" />
 											<input type="hidden" id="senderHash" name="hash" th:field="${paymentDTO.senderDTO.hash}" />
 											<input type="hidden" id="cardBand" name="cardBand" th:field="${paymentDTO.cardBand}" />
@@ -186,26 +186,26 @@
 											<div class="pagseguro-form pagseguro-creditCard pagseguro-debitCard" style="display:none;">
 												<div class="row">
 													<div class="col-md-6 mb-3">
-														<label for="cc-name">Nome Cartão<span style="color:red;"> *</span></label>
-														<input type="text" th:field="${paymentDTO.holderDTO.name}" class="form-control" id="cc-name" 
+														<label for="cartaoNome">Nome Cartão<span style="color:red;"> *</span></label>
+														<input type="text" th:field="${paymentDTO.holderDTO.name}" class="form-control" id="cartaoNome" 
 														placeholder="Nome Cartão" required>
 														<small class="text-muted">Nome escrito no cartão</small>
 													</div>
 													<div class="col-md-6 mb-3">
-														<label for="cc-number">Número Cartão<span style="color:red;"> *</span></label>
+														<label for="cartaoNume">Número Cartão<span style="color:red;"> *</span></label>
 														<input type="text" class="form-control input-numero-cartao" 
-														th:field="${paymentDTO.holderDTO.cardNumber}" id="cc-number" placeholder="Número Cartão" required>
+														th:field="${paymentDTO.holderDTO.cardNumber}" id="cartaoNume" placeholder="Número Cartão" required>
 													</div>
 												</div>
 												<div class="row">
 													<div class="col-md-3 mb-3">
-														<label for="cc-expiration">Expiração<span style="color:red;"> *</span></label>
-														<input type="text" class="form-control" id="cc-expiration" placeholder="Expiração" required>
+														<label for="cartaoExpiracao">Expiração<span style="color:red;"> *</span></label>
+														<input type="text" class="form-control" id="cartaoExpiracao" placeholder="Expiração" required>
 													</div>
 													
 													<div class="col-md-2 mb-3">
 														<label for="cc-expiration">CVV<span style="color:red;"> *</span></label>
-														<input type="text" class="form-control" id="cc-cvv" placeholder="CVV" required>
+														<input type="text" class="form-control" id="cartaoCv" placeholder="CVV" required>
 													</div>
 													
 													<div class="col-md-7 mb-3">

@@ -8,18 +8,18 @@ CheckoutPaymentForm.SubmitForm = function() {
 	new App.Loading($('body')).show();
 	
 	if($('#creditRadio').is(':checked')){
-		var ccExpiration = $('#cc-expiration').val().split("/");
+		var ccExpiration = $('#cartaoExpiracao').val().split("/");
 		
-		var cartaoSemEspaco = $('#cc-number').val() ? $('#cc-number').val().replace(/\s/g,'') : "";
+		var cartaoSemEspaco = $('#cartaoNume').val() ? $('#cartaoNume').val().replace(/\s/g,'') : "";
 		
 		PagSeguroDirectPayment.createCardToken({
 			brand: $('#cardBand').val(),
 			cardNumber: cartaoSemEspaco,
-			cvv: $('#cc-cvv').val(),
+			cvv: $('#cartaoCv').val(),
 			expirationMonth: ccExpiration[0],
 			expirationYear: ccExpiration[1],
 			success: function(response) {
-				$('#creditCardToken').val(response.card.token);
+				$('#cartaoToken').val(response.card.token);
 
 				$('#formPayment').submit();
 			},
@@ -36,43 +36,8 @@ CheckoutPaymentForm.SubmitForm = function() {
 	}
 }
 
-CheckoutPaymentForm.PagSeguroCheckout = function() {
-	var senderHash = PagSeguroDirectPayment.getSenderHash();
-	
-	$('input[name=pagseguro\\[senderHash\\]]').val(senderHash);
-
-	if ($('input[name=pagseguro\\[option\\]]:checked').val() == 'creditCard') {
-
-		if ($('input[name=pagseguro\\[creditCardToken\\]]').val().length == 0) {
-			checkoutNoSubmit = true;
-
-			var param = {
-					brand: $('input[name=pagseguro\\[brand\\]]').val(),
-					cardNumber: $('.pagseguro_cc_card_num').val(),
-					cvv: $('.pagseguro_cc_card_code').val(),
-					expirationMonth: $('.pagseguro_cc_exp_date_mm').val(),
-					expirationYear: $('.pagseguro_cc_exp_date_yy').val(),
-					success: function(response) {
-						$('input[name=pagseguro\\[creditCardToken\\]]').val(response.card.token);
-						checkoutNoSubmit = false;
-						$('#onepage_checkoutform').trigger('submit');
-					},
-					error: function(response) {
-						alert('Cartão de crédito inválido. Não conseguimos processar seu pedido.');
-						$checkoutButton = $('#onepage_checkoutform').find('button[type=submit]');
-						$checkoutButton.removeClass('disabled');
-						$checkoutButton.html('Finalizar compra');
-					}
-			}
-			
-			PagSeguroDirectPayment.createCardToken(param);
-		}
-	}
-	
-}
-
 CheckoutPaymentForm.PagSeguroValidateCard = function(element, bypassLengthTest) {
-	$('#creditCardToken').val('');
+	$('#cartaoToken').val('');
 	var cardNum = $(element).val().replace(/[^\d.]/g, '');
 	console.info(cardNum);
 	var card_invalid = 'Validamos os primeiros 6 números do seu cartão de crédito e está inválido. Por favor esvazie o campo e tente digitar de novo.';
@@ -167,11 +132,11 @@ $(document).ready(function() {
 		new App.Loading($('body')).hide();
 	});
 
-	$('#cc-number').keyup(function(){
+	$('#cartaoNume').keyup(function(){
 		new CheckoutPaymentForm.PagSeguroValidateCard(this, false);
 	});
 
-	$('#cc-number').focusout(function(){
+	$('#cartaoNume').focusout(function(){
 		new CheckoutPaymentForm.PagSeguroValidateCard(this, true);
 	});
 
@@ -191,9 +156,9 @@ $(document).ready(function() {
 	$('#areaCode').mask('00');
 	$('#phoneNumber').mask('00000-0000');
 	
-	$('#cc-number').mask('0000 0000 0000 0000');
-	$('#cc-cvv').mask('000');
-	$('#cc-expiration').mask('00/0000');
+	$('#cartaoNume').mask('0000 0000 0000 0000');
+	$('#cartaoCv').mask('000');
+	$('#cartaoExpiracao').mask('00/0000');
 	
 	//$('.input-numero-cartao').attr("data-inputmask", "'mask': '[9999 9999 9999 9999]'");
 	
